@@ -12,7 +12,11 @@
 ### Objetivos específicos
 
 ## Organização da equipe
-
+  Para a realização do projeto contamos com uma equipe de três desenvolvedores:  
+  Erick Fleury  
+  Maria Luiza Cardoso  
+  Raingredi Mendes - Front-End
+  
 ## Modelagem inicial
 
 ## UML do projeto
