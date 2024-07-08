@@ -13,4 +13,4 @@
 ## Modelagem inicial
 
 ## UML do projeto
-![image](imgs\uml.png)
+![image](./imgs/uml.png)
