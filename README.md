@@ -8,14 +8,19 @@
 
 ## Objetivos
 ### Objetivo Geral
-
+ Desenvolver e lançar um marketplace online dedicado aos serviços de lava jato, com o objetivo de simplificar o acesso dos proprietários de veículos a serviços de alta qualidade, ao mesmo tempo que aprimora a gestão e aumenta a visibilidade dos negócios de lava jato.  
+ 
 ### Objetivos específicos
-
+* Facilitar o contato dos clientes com os Lava jatos através de uma plataforma intuitiva que possibilita localizar, comparar e agendar os serviços;
+* Aprimorar a gestão dos proprietários de Lava jatos oferecendo ferramentas de gestão integradas, incluindo agendamento de serviços e monitoramento de desempenho, para ajudar a administrarem seus negócios de forma mais eficaz;
+* Aumentar a visibilidade dos estabelecimentos coloborando para alcançarem um público mais amplo e a se destacarem em um mercado competitivo;
+* Garantir a satisfação dos clientes por meio de um sistema de avaliações e feedbacks que permita aos clientes compartilhar suas experiências e ajudar outros usuários.
+  
 ## Organização da equipe
   Para a realização do projeto contamos com uma equipe de três desenvolvedores:  
   Erick Fleury  
   Maria Luiza Cardoso  
-  Raingredi Mendes - Front-End
+  Raingredi Mendes
   
 ## Modelagem inicial
 
