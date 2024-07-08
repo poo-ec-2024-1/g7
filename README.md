@@ -11,3 +11,6 @@
 ## Organização da equipe
 
 ## Modelagem inicial
+
+## UML do projeto
+![image](./imgs/uml.png)
