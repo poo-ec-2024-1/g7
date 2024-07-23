@@ -1,3 +1,5 @@
+package com.lavamarket;
+
 public class Veiculo {
     private String placa;
     private String marca;

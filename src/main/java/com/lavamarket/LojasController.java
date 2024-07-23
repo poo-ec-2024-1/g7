@@ -1,3 +1,5 @@
+package com.lavamarket;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 

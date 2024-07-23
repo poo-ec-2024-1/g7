@@ -1,3 +1,5 @@
+package com.lavamarket;
+
 public class Cliente extends Usuario {
     public Cliente(String usuario, String senha, String nome, String cpf, String telefone, String endereco) {
         this.nome = nome;

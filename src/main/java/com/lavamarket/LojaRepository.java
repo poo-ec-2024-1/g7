@@ -1,3 +1,5 @@
+package com.lavamarket;
+
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;

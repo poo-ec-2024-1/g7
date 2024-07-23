@@ -1,3 +1,5 @@
+package com.lavamarket;
+
 public class Funcionario extends Usuario {
     public Funcionario(String nome, String id, String cpf, String telefone, String endereco) {
         this.nome = nome;

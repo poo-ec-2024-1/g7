@@ -1,3 +1,5 @@
+package com.lavamarket;
+
 import java.sql.*;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 
