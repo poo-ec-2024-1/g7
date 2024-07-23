@@ -1,9 +1,23 @@
 public class Cliente extends Usuario {
-    public void Cliente(String nome, String id, String cpf, String telefone, String endereco) {
+    public Cliente(String usuario, String senha, String nome, String cpf, String telefone, String endereco) {
         this.nome = nome;
-        this.id = id;
         this.cpf = cpf;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.usuario = usuario;
+        this.senha = senha;
+    }
+    public Cliente(){
+        this.nome = "";
+        this.cpf = "";
+        this.telefone = "";
+        this.endereco = "";
+    }
+
+    public String getUsuario(){
+        return this.usuario;
+    }
+    public String getSenha(){
+        return this.senha;
     }
 }
