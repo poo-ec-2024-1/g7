@@ -2,7 +2,13 @@ package com.lavamarket;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 
 /**
@@ -26,25 +32,33 @@ public class LoginController
     @FXML
     private void loginLojasButton(ActionEvent event) throws Exception {
         try {
-            LojaRepository lojaRepository = new LojaRepository(new Database("loja.db"));
-            Loja user = lojaRepository.loadFromUsuario(username.getText());
+            Loja user = App.lojaRepository.loadFromUsuario(username.getText());
             if (username.getText().equals(user.getUsuario()) && password.getText().equals(user.getSenha())) {
-                Util.mudarScene("lojas.fxml", event, getClass());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("lojas.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                LojaController controller = loader.getController();
+                controller.setStage(stage);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setUserData(user);
+                stage.show();
+                //Util.mudarScene("lojas.fxml", event, getClass(), user);
             }
         } catch(Exception e){
-            System.out.println("Falha na busca do usuario");
+            System.out.println("Falha na busca do usuario: "+e);
         }
     }
     @FXML
     private void loginClientesButton(ActionEvent event) throws Exception {
         try {
-            ClienteRepository clienteRepository = new ClienteRepository(new Database("cliente.db"));
-            Cliente user = clienteRepository.loadFromUsuario(username1.getText());
+            Cliente user = App.clienteRepository.loadFromUsuario(username1.getText());
             if (username1.getText().equals(user.getUsuario()) && password1.getText().equals(user.getSenha())) {
-                Util.mudarScene("lojas.fxml", event, getClass());
+                
+                //Util.mudarScene("clientes.fxml", event, getClass(), user);
             }
         } catch(Exception e){
-            System.out.println("Falha na busca do usuario");
+            System.out.println("Falha na busca do usuario: "+e);
         }
     }
 
@@ -56,6 +70,5 @@ public class LoginController
     @FXML
     private void registerClientesButton(ActionEvent event) throws Exception {
         Util.mudarScene("registroClientes.fxml", event, getClass());
-    }
-        
+    } 
 }

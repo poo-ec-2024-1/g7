@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="registroClientesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lavamarket.registroClientesController">
    <children>
       <TextField fx:id="nome" prefHeight="45.0" prefWidth="190.0" promptText="Nome" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="40.0" />
       <TextField fx:id="senha" prefHeight="45.0" prefWidth="190.0" promptText="Senha" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="110.0" />
@@ -13,5 +14,8 @@
       <TextField fx:id="endereco" prefHeight="45.0" prefWidth="190.0" promptText="Endereço" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0" />
       <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerClienteButton" text="Registrar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="320.0" />
       <TextField fx:id="telefone" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="190.0" promptText="Telefone" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0" />
+      <Label fx:id="erro" text="Todos os valores devem ser devidamente inseridos" textFill="RED" visible="false" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="320.0" />
+      <Label fx:id="concluido" layoutX="10.0" layoutY="10.0" text="Registro concluido!" textFill="#0aff00" visible="false" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="320.0" />
+      <Button mnemonicParsing="false" onAction="#voltarButton" text="&lt;---" AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

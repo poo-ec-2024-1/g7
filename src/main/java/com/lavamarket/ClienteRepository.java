@@ -82,7 +82,6 @@ public class ClienteRepository
         return this.loadedCliente;
     }
     
-    
     public List<Cliente> loadAll() {
         try {
             this.loadedClientes =  dao.queryForAll();
