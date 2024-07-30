@@ -11,12 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
-/**
- * Controla os dados do modelo e a interação com a interface (visão)
- * 
- * @author Erick
- * @version 0.01
- */
 public class LoginController
 {
     @FXML
@@ -43,7 +37,6 @@ public class LoginController
                 stage.setScene(scene);
                 stage.setUserData(user);
                 stage.show();
-                //Util.mudarScene("lojas.fxml", event, getClass(), user);
             }
         } catch(Exception e){
             System.out.println("Falha na busca do usuario: "+e);
@@ -54,8 +47,6 @@ public class LoginController
         try {
             Cliente user = App.clienteRepository.loadFromUsuario(username1.getText());
             if (username1.getText().equals(user.getUsuario()) && password1.getText().equals(user.getSenha())) {
-                
-                //Util.mudarScene("clientes.fxml", event, getClass(), user);
             }
         } catch(Exception e){
             System.out.println("Falha na busca do usuario: "+e);
