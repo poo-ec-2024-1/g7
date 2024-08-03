@@ -22,10 +22,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tabelaLojas" layoutX="45.0" layoutY="85.0" prefHeight="200.0" prefWidth="509.0">
+                        <TableView fx:id="tabelaLojas" layoutX="45.0" layoutY="85.0" onMouseClicked="#selectLoja" prefHeight="200.0" prefWidth="509.0">
                           <columns>
                             <TableColumn fx:id="nomeLoja" prefWidth="145.5999755859375" text="Empresa" />
-                            <TableColumn fx:id="servicosLoja" prefWidth="194.4000244140625" text="Serviços" />
+                            <TableColumn fx:id="reviewLoja" prefWidth="194.4000244140625" text="Serviços" />
                               <TableColumn fx:id="precomedioLoja" prefWidth="168.00002441406252" text="Preço Médio" />
                           </columns>
                         </TableView>

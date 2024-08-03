@@ -8,10 +8,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class ClienteController {
     @FXML
@@ -30,13 +35,13 @@ public class ClienteController {
     private TableColumn<VeiculoModel, String> tipo;
 
     @FXML
-    private TableView<Loja> tabelaLojas;
+    private TableView<LojaModel> tabelaLojas;
     @FXML
-    private TableColumn<Loja, Integer> nomeLoja;
+    private TableColumn<LojaModel, Integer> nomeLoja;
     @FXML
-    private TableColumn<Loja, String> servicosLoja;
+    private TableColumn<LojaModel, String> precomedioLoja;
     @FXML
-    private TableColumn<Loja, String> precomedioLoja;
+    private TableColumn<LojaModel, Float> reviewLoja;
 
     @FXML
     private TextField idField;
@@ -61,9 +66,9 @@ public class ClienteController {
 
     ObservableList<VeiculoModel> veiculosObs;
 
-    List<Loja> lojas = new ArrayList<>();
+    List<LojaModel> lojas = new ArrayList<>();
 
-    ObservableList<Loja> lojasObs;
+    ObservableList<LojaModel> lojasObs;
     
     @FXML
     private void startVeiculos(Event event) {
@@ -145,20 +150,42 @@ public class ClienteController {
 
     @FXML
     private void startLojas(Event event) {
-        nomeLoja.setCellValueFactory(new PropertyValueFactory<Loja, Integer>("id"));
-        servicosLoja.setCellValueFactory(new PropertyValueFactory<Loja, String>("servicos"));
-        precomedioLoja.setCellValueFactory(new PropertyValueFactory<Loja, String>("precomedio"));
+        nomeLoja.setCellValueFactory(new PropertyValueFactory<LojaModel, Integer>("nome"));
+        reviewLoja.setCellValueFactory(new PropertyValueFactory<LojaModel, Float>("review"));
+        precomedioLoja.setCellValueFactory(new PropertyValueFactory<LojaModel, String>("precomedio"));
+
         loadLojas();
     }
 
     private void loadLojas(){
         try{
-            lojas = App.lojaRepository.loadAll();
+            
+            for (Loja l : App.lojaRepository.loadAll()) {
+                LojaModel lm = new LojaModel(l.getNome(), l.getReview(), l.getPrecomedio(), l.getId());
+                lojas.add(lm);
+            }
             lojasObs = FXCollections.observableArrayList(lojas);
             tabelaLojas.setItems(lojasObs);
             lojas.clear();
         } catch (Exception e) {
             System.out.println("ERRO NA TABELA: " + e);
+        }
+    }
+
+    @FXML
+    private void selectLoja(Event event) {
+        try {
+            Loja l = App.lojaRepository.loadFromId(tabelaLojas.getSelectionModel().getSelectedItem().getId());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("selectedLoja.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            SelectedLojaController controller = loader.getController();
+            controller.setLoja(l);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("ERRO AO SELECIONAR LOJA: "+e);
         }
     }
 }

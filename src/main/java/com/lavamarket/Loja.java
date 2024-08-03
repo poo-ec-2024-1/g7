@@ -31,6 +31,9 @@ public class Loja {
     @DatabaseField
     private String servicos = "";
 
+    @DatabaseField
+    private int review = 0;
+
     public Loja(String nome, String usuario, String senha, String cnpj, String endereco) {
         this.nome = nome;
         this.cnpj = cnpj;
@@ -74,7 +77,13 @@ public class Loja {
         this.precomedio = precomedio;
     }
     public int getPrecomedio() {
-        return precomedio;
+        App.servicoRepository.loadAllFromLojaId(this.id);
+        int contagem = 1;
+        for (Servico s : App.servicoRepository.loadAll()) {
+            precomedio += s.getValor();
+            contagem++;
+        }
+        return this.precomedio/contagem;
     }
     public String getEndereco() {
         return endereco;
@@ -90,6 +99,15 @@ public class Loja {
     }
     public int getId() {
         return id;
+    }
+    public float getReview() {
+        App.reviewRepository.loadAllFromLojaId(this.id);
+        int contagem = 1;
+        for (Review r : App.reviewRepository.loadAll()) {
+            review += r.getReview();
+            contagem++;
+        }
+        return this.review/contagem;
     }
     
 }
