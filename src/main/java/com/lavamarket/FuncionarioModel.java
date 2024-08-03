@@ -1,28 +1,38 @@
 package com.lavamarket;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class FuncionarioModel  {
-    
     private final SimpleIntegerProperty id;
+
     private final SimpleStringProperty nome;
+
     private final SimpleStringProperty cpf;
+
     private final SimpleStringProperty telefone;
+
     private final SimpleStringProperty endereco;
+
     private final SimpleDoubleProperty salario;
-    private final SimpleBooleanProperty selected;
-    
-    public FuncionarioModel(int id, String nome, String cpf, String telefone, String endereco, Double salario) {
+
+    public FuncionarioModel(int id, String nome, String cpf, String telefone, String endereco, double salario) {
         this.id = new SimpleIntegerProperty(id);
         this.nome = new SimpleStringProperty(nome);
         this.cpf = new SimpleStringProperty(cpf);
         this.telefone = new SimpleStringProperty(telefone);
         this.endereco = new SimpleStringProperty(endereco);
         this.salario = new SimpleDoubleProperty(salario);
-        this.selected = new SimpleBooleanProperty(false);
+    }
+
+    public FuncionarioModel() {
+        this.id = new SimpleIntegerProperty();
+        this.nome = new SimpleStringProperty();
+        this.cpf = new SimpleStringProperty();
+        this.telefone = new SimpleStringProperty();
+        this.endereco = new SimpleStringProperty();
+        this.salario = new SimpleDoubleProperty();
     }
 
     public int getId() {
@@ -96,18 +106,4 @@ public class FuncionarioModel  {
     public void setSalario(double salario) {
         this.salario.set(salario);
     }
-
-    public boolean isSelected() {
-        return this.selected.get();
-    }
-
-    public SimpleBooleanProperty selectedProperty() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected.set(selected);
-    }
-    
-
 }

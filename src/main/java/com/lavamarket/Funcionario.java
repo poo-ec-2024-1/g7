@@ -1,7 +1,9 @@
 package com.lavamarket;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
+@DatabaseTable(tableName = "funcionario")
 public class Funcionario {
     @DatabaseField(generatedId = true)
     private int id;
@@ -24,8 +26,6 @@ public class Funcionario {
     @DatabaseField
     private int lavajato_id;
     
-    public Funcionario(){
-    }
     public Funcionario(String nome, String cpf, String telefone, String endereco, double salario, int lavajato_id) {
         this.nome = nome;
         this.cpf = cpf;
@@ -33,6 +33,15 @@ public class Funcionario {
         this.endereco = endereco;
         this.salario = salario;
         this.lavajato_id = lavajato_id;
+    }
+
+    public Funcionario(){
+        this.nome = "";
+        this.cpf = "";
+        this.telefone = "";
+        this.endereco = "";
+        this.salario = 0;
+        this.lavajato_id = 0;
     }
     
     public int getId(){
@@ -56,5 +65,25 @@ public class Funcionario {
     public int getlavajato_id(){
         return this.lavajato_id;
     }
-
+    public void setId(int id){
+        this.id = id;
+    }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public void setCpf(String cpf){
+        this.cpf = cpf;
+    }
+    public void setTelefone(String telefone){
+        this.telefone = telefone;
+    }
+    public void setEndereco(String endereco){
+        this.endereco = endereco;
+    }
+    public void setSalario(double salario){
+        this.salario = salario;
+    }
+    public void setlavajato_id(int lavajato_id){
+        this.lavajato_id = lavajato_id;
+    }
 }

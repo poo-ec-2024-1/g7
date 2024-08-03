@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -32,10 +31,9 @@ public class LoginController
                 Parent root = loader.load();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 LojaController controller = loader.getController();
-                controller.setStage(stage);
+                controller.setLoja(user);
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.setUserData(user);
                 stage.show();
             }
         } catch(Exception e){
@@ -45,8 +43,16 @@ public class LoginController
     @FXML
     private void loginClientesButton(ActionEvent event) throws Exception {
         try {
-            Cliente user = App.clienteRepository.loadFromUsuario(username1.getText());
-            if (username1.getText().equals(user.getUsuario()) && password1.getText().equals(user.getSenha())) {
+            Cliente user1 = App.clienteRepository.loadFromUsuario(username1.getText());
+            if (username1.getText().equals(user1.getUsuario()) && password1.getText().equals(user1.getSenha())) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("clientes.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                ClienteController controller = loader.getController();
+                controller.setCliente(user1);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
         } catch(Exception e){
             System.out.println("Falha na busca do usuario: "+e);

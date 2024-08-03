@@ -22,14 +22,14 @@ public class Loja {
     @DatabaseField
     private String cnpj;
 
-    //@DatabaseField
-    //private String telefone;
+    @DatabaseField
+    private int precomedio = 0;
 
     @DatabaseField
     private String endereco;
     
-    //@DatabaseField
-    //private String servicos;
+    @DatabaseField
+    private String servicos = "";
 
     public Loja(String nome, String usuario, String senha, String cnpj, String endereco) {
         this.nome = nome;
@@ -39,6 +39,11 @@ public class Loja {
         this.senha = senha;
     }
     public Loja(){
+        this.nome = "";
+        this.cnpj = "";
+        this.endereco = "";
+        this.usuario = "";
+        this.senha = "";
     }
 
     public String getNome() {
@@ -65,24 +70,24 @@ public class Loja {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-    /*public String getTelefone() {
-        return telefone;
+    public void setPrecomedio(int precomedio) {
+        this.precomedio = precomedio;
     }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }*/
+    public int getPrecomedio() {
+        return precomedio;
+    }
     public String getEndereco() {
         return endereco;
     }
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    /*public String getServicos() {
+    public String getServicos() {
         return servicos;
     }
     public void setServicos(String servicos) {
         this.servicos = servicos;
-    }*/
+    }
     public int getId() {
         return id;
     }

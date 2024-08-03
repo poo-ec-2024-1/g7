@@ -1,6 +1,5 @@
 package com.lavamarket;
 
-import java.lang.ModuleLayer.Controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +21,8 @@ public class App extends Application {
     static ClienteRepository clienteRepository = new ClienteRepository(db);
     static LojaRepository lojaRepository = new LojaRepository(db);
     static FuncionarioRepository funcionarioRepository = new FuncionarioRepository(db);
+    static VeiculoRepository veiculoRepository = new VeiculoRepository(db);
+    static ServicoRepository servicoRepository = new ServicoRepository(db);
     
     public static void print(String s)
     {
