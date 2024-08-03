@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lavamarket.SelectedLojaController" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lavamarket.SelectedLojaController">
+   <children>
+      <TabPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab closable="false" onSelectionChanged="#startServico" text="Seleção de Serviço">
+               <content>
+                  <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <TableView fx:id="tabelaServicos" onMouseClicked="#selectServico" prefHeight="398.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                  <TableColumn fx:id="nomeColumn" editable="false" prefWidth="75.0" text="Nome" />
+                                  <TableColumn fx:id="precoColumn" editable="false" prefWidth="75.0" text="Preço" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <GridPane prefHeight="398.0" prefWidth="417.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <CheckBox fx:id="lavagemc" disable="true" mnemonicParsing="false" text="Lavagem Completa" textAlignment="CENTER" wrapText="true" />
+                                    <CheckBox fx:id="lavagems" disable="true" mnemonicParsing="false" text="Lavagem Simples" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" />
+                                    <CheckBox fx:id="cerap" disable="true" mnemonicParsing="false" text="Cera Plástica" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1" />
+                                    <CheckBox fx:id="ceran" disable="true" mnemonicParsing="false" text="Cera Normal" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <CheckBox fx:id="lavagemt" disable="true" mnemonicParsing="false" text="Lavagem De Tapetes" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" />
+                                    <CheckBox fx:id="outros" disable="true" mnemonicParsing="false" text="Outros" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <TextArea fx:id="infoAdicional" editable="false" promptText="Informações adicionais" wrapText="true" GridPane.columnIndex="3" />
+                                    <ChoiceBox fx:id="veiculo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Selecione o veiculo para limpeza:" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3" />
+                                    <TextArea fx:id="valorPacote" prefHeight="200.0" prefWidth="200.0" promptText="Valor do pacote" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" text="Agendar lavagem" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" onAction="#startServico" text="Carregar Serviços" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

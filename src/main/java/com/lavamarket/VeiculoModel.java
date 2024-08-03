@@ -15,8 +15,11 @@ public class VeiculoModel  {
     private final SimpleStringProperty cor;
 
     private final SimpleStringProperty tipo;
+
+    private final SimpleStringProperty apelido;
     
-    public VeiculoModel(int id, String placa, String marca, String modelo, String cor, String tipo) {
+    public VeiculoModel(String apelido, int id, String placa, String marca, String modelo, String cor, String tipo) {
+        this.apelido = new SimpleStringProperty(apelido);
         this.id = new SimpleIntegerProperty(id);
         this.placa = new SimpleStringProperty(placa);
         this.marca = new SimpleStringProperty(marca);
@@ -26,6 +29,7 @@ public class VeiculoModel  {
     }
 
     public VeiculoModel() {
+        this.apelido = new SimpleStringProperty();
         this.placa = new SimpleStringProperty();
         this.marca = new SimpleStringProperty();
         this.modelo = new SimpleStringProperty();
@@ -103,5 +107,17 @@ public class VeiculoModel  {
 
     public void setTipo(String tipo) {
         this.tipo.set(tipo);
+    }
+
+    public String getApelido() {
+        return this.apelido.get();
+    }
+
+    public SimpleStringProperty apelidoProperty() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido.set(apelido);
     }
 }

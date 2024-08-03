@@ -9,6 +9,9 @@ public class Veiculo {
     private int id;
 
     @DatabaseField
+    private String apelido;
+
+    @DatabaseField
     private String placa;
 
     @DatabaseField
@@ -26,7 +29,8 @@ public class Veiculo {
     @DatabaseField
     private int cliente_id;
 
-    public Veiculo(String placa, String marca, String modelo, String cor, String tipo, int cliente_id) {
+    public Veiculo(String apelido, String placa, String marca, String modelo, String cor, String tipo, int cliente_id) {
+        this.apelido = apelido;
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
@@ -36,6 +40,7 @@ public class Veiculo {
     }
 
     public Veiculo() {
+        this.apelido = "";
         this.placa = "";
         this.marca = "";
         this.modelo = "";
@@ -98,6 +103,14 @@ public class Veiculo {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
     }
 }
 

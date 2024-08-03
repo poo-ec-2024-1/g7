@@ -29,6 +29,14 @@ public class App extends Application {
     {
         System.out.println(s);
     }
+    public static void print(String d,String s)
+    {
+        System.out.println(d + s);
+    }
+    public static void print(Object a)
+    {
+        System.out.println(a);
+    }
     
     
     public static void main(String[] args) throws Exception {

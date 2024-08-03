@@ -264,7 +264,7 @@ public class LojaController  {
     private void loadServicos(){
         try{
             for (Servico s : App.servicoRepository.loadAllFromLojaId(loja.getId())) {
-                ServicoModel sm = new ServicoModel(s.getId(), s.getNomePacote(), String.valueOf(s.getValor()));
+                ServicoModel sm = new ServicoModel(s.getId(), s.getNomePacote(), s.getValor());
                 servicos.add(sm);
             }
             servicosObs = FXCollections.observableArrayList(servicos);

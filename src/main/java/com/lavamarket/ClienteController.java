@@ -24,6 +24,8 @@ public class ClienteController {
     @FXML
     private TableColumn<VeiculoModel, Integer> id;
     @FXML
+    private TableColumn<VeiculoModel, String> apelido;
+    @FXML
     private TableColumn<VeiculoModel, String> placa;
     @FXML
     private TableColumn<VeiculoModel, String> marca;
@@ -55,6 +57,8 @@ public class ClienteController {
     private TextField corField;
     @FXML
     private TextField tipoField;
+    @FXML
+    private TextField apelidoField;
 
     private Cliente cliente;
 
@@ -73,6 +77,7 @@ public class ClienteController {
     @FXML
     private void startVeiculos(Event event) {
         id.setCellValueFactory(new PropertyValueFactory<VeiculoModel, Integer>("id"));
+        apelido.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("apelido")); 
         placa.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("placa"));
         marca.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("marca"));
         modelo.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("modelo"));
@@ -84,9 +89,10 @@ public class ClienteController {
     @FXML
     private void adicionarVeiculo(ActionEvent event) {
         try {
-                Veiculo v = new Veiculo(placaField.getText(), marcaField.getText(), modeloField.getText(), corField.getText(), tipoField.getText(), cliente.getId());
+                Veiculo v = new Veiculo(apelidoField.getText(), placaField.getText(), marcaField.getText(), modeloField.getText(), corField.getText(), tipoField.getText(), cliente.getId());
                 App.veiculoRepository.create(v);
                 loadVeiculos();
+                clear();
         } catch (Exception e) {
             System.out.println("ERRO AO ADICIONAR FUNCIONARIO: " + e);
         }
@@ -112,8 +118,10 @@ public class ClienteController {
             v.setModelo(modeloField.getText());
             v.setCor(corField.getText());
             v.setTipo(tipoField.getText());
+            v.setApelido(apelidoField.getText());
             App.veiculoRepository.update(v);
             loadVeiculos();
+            clear();
         } catch (Exception e) {
             System.out.println("ERRO AO EDITAR FUNCIONARIO: " + e);
         }
@@ -129,6 +137,7 @@ public class ClienteController {
             modeloField.setText(v.getModelo());
             corField.setText(v.getCor());
             tipoField.setText(v.getTipo());
+            apelidoField.setText(v.getApelido());
         } catch (Exception e) {
             System.out.println("ERRO AO SELECIONAR FUNCIONARIO: "+e);
         }
@@ -137,7 +146,7 @@ public class ClienteController {
     private void loadVeiculos(){
         try{
             for (Veiculo v : App.veiculoRepository.loadAllFromClienteId(cliente.getId())) {
-                VeiculoModel vm = new VeiculoModel(v.getId(), v.getPlaca(), v.getMarca(), v.getModelo(), v.getCor(), v.getTipo());
+                VeiculoModel vm = new VeiculoModel(v.getApelido(), v.getId(), v.getPlaca(), v.getMarca(), v.getModelo(), v.getCor(), v.getTipo());
                 veiculos.add(vm);
             }
             veiculosObs = FXCollections.observableArrayList(veiculos);
@@ -181,11 +190,22 @@ public class ClienteController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             SelectedLojaController controller = loader.getController();
             controller.setLoja(l);
+            controller.setCliente(cliente);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println("ERRO AO SELECIONAR LOJA: "+e);
         }
+    }
+
+    private void clear(){
+        idField.clear();
+        placaField.clear();
+        marcaField.clear();
+        modeloField.clear();
+        corField.clear();
+        tipoField.clear();
+        apelidoField.clear();
     }
 }

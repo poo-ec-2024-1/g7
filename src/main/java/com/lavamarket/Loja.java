@@ -78,10 +78,13 @@ public class Loja {
     }
     public int getPrecomedio() {
         App.servicoRepository.loadAllFromLojaId(this.id);
-        int contagem = 1;
+        int contagem = 0;
         for (Servico s : App.servicoRepository.loadAll()) {
             precomedio += s.getValor();
             contagem++;
+        }
+        if (contagem == 0) {
+            return precomedio;
         }
         return this.precomedio/contagem;
     }
@@ -102,10 +105,13 @@ public class Loja {
     }
     public float getReview() {
         App.reviewRepository.loadAllFromLojaId(this.id);
-        int contagem = 1;
+        int contagem = 0;
         for (Review r : App.reviewRepository.loadAll()) {
             review += r.getReview();
             contagem++;
+        }
+        if (contagem == 0) {
+            return review;
         }
         return this.review/contagem;
     }

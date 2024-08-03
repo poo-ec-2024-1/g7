@@ -1,17 +1,18 @@
 package com.lavamarket;
 
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class ServicoModel {
     private final SimpleStringProperty nomePacote;
-    private final SimpleStringProperty valor;
+    private final SimpleFloatProperty valor;
     private final SimpleIntegerProperty id;
 
-    public ServicoModel(int id, String nomePacote, String valor) {
+    public ServicoModel(int id, String nomePacote, Float valor) {
         this.id = new SimpleIntegerProperty(id);
         this.nomePacote = new SimpleStringProperty(nomePacote);
-        this.valor = new SimpleStringProperty(valor);
+        this.valor = new SimpleFloatProperty(valor);
     }
 
     public String getNomePacote() {
@@ -22,11 +23,11 @@ public class ServicoModel {
         this.nomePacote.set(nomePacote);
     }
 
-    public String getValor() {
+    public float getValor() {
         return valor.get();
     }
 
-    public void setValor(String valor) {
+    public void setValor(float valor) {
         this.valor.set(valor);
     }
 
@@ -34,7 +35,7 @@ public class ServicoModel {
         return nomePacote;
     }
 
-    public SimpleStringProperty valorProperty() {
+    public SimpleFloatProperty valorProperty() {
         return valor;
     }
 
