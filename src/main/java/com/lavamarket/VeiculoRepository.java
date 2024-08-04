@@ -92,6 +92,30 @@ public class VeiculoRepository
         }
         return this.loadedVeiculos;
     }
+
+    public Veiculo loadFromApelido(String apelido) {
+        try {
+            this.loadedVeiculo = dao.queryForEq("apelido", apelido).getFirst();
+            if (this.loadedVeiculo != null)
+                this.loadedVeiculos.add(this.loadedVeiculo);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return this.loadedVeiculo;
+    }
+
+    public Veiculo loadFromPlaca(String placa) {
+        try {
+            this.loadedVeiculo = dao.queryForEq("placa", placa).getFirst();
+            if (this.loadedVeiculo != null)
+                this.loadedVeiculos.add(this.loadedVeiculo);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return this.loadedVeiculo;
+    }
+
+    
     
     public List<Veiculo> loadAll() {
         try {

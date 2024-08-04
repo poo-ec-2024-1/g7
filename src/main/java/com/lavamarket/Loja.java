@@ -23,7 +23,13 @@ public class Loja {
     private String cnpj;
 
     @DatabaseField
-    private int precomedio = 0;
+    private int precomedioCarro = 0;
+
+    @DatabaseField
+    private int precomedioMoto = 0;
+
+    @DatabaseField
+    private int precomedioCaminhao = 0;
 
     @DatabaseField
     private String endereco;
@@ -73,20 +79,44 @@ public class Loja {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-    public void setPrecomedio(int precomedio) {
-        this.precomedio = precomedio;
+    public void setPrecomedioCarro(int precomedioCarro) {
+        this.precomedioCarro = precomedioCarro;
     }
-    public int getPrecomedio() {
+    public int getPrecomedioCarro() {
         App.servicoRepository.loadAllFromLojaId(this.id);
         int contagem = 0;
         for (Servico s : App.servicoRepository.loadAll()) {
-            precomedio += s.getValor();
+            precomedioCarro += s.getValorCarro();
             contagem++;
         }
         if (contagem == 0) {
-            return precomedio;
+            return precomedioCarro;
         }
-        return this.precomedio/contagem;
+        return this.precomedioCarro/contagem;
+    }
+    public int getPrecomedioMoto() {
+        App.servicoRepository.loadAllFromLojaId(this.id);
+        int contagem = 0;
+        for (Servico s : App.servicoRepository.loadAll()) {
+            precomedioMoto += s.getValorMoto();
+            contagem++;
+        }
+        if (contagem == 0) {
+            return precomedioMoto;
+        }
+        return this.precomedioMoto/contagem;
+    }
+    public int getPrecomedioCaminhao() {
+        App.servicoRepository.loadAllFromLojaId(this.id);
+        int contagem = 0;
+        for (Servico s : App.servicoRepository.loadAll()) {
+            precomedioCaminhao += s.getValorCaminhao();
+            contagem++;
+        }
+        if (contagem == 0) {
+            return precomedioCaminhao;
+        }
+        return this.precomedioCaminhao/contagem;
     }
     public String getEndereco() {
         return endereco;

@@ -5,10 +5,14 @@ import com.j256.ormlite.field.DatabaseField;
 public class Servico {
     @DatabaseField(generatedId = true)
     private int id;
-    @DatabaseField
+    @DatabaseField(unique = true)
     private String nomePacote;
     @DatabaseField
-    private float valor;
+    private float valorCarro;
+    @DatabaseField
+    private float valorMoto;
+    @DatabaseField
+    private float valorCaminhao;
     @DatabaseField
     private int lavajato_Id;
     @DatabaseField
@@ -26,9 +30,11 @@ public class Servico {
     @DatabaseField
     private String infoadicional;
 
-    public Servico(String nomePacote, float valor, int lavajato_Id, Boolean lavagemc, Boolean lavagems, Boolean lavagemt, Boolean cerap, Boolean ceran, Boolean outros, String infoadicional) {
+    public Servico(String nomePacote, float valorCarro, float valorMoto, float valorCaminhao, int lavajato_Id, Boolean lavagemc, Boolean lavagems, Boolean lavagemt, Boolean cerap, Boolean ceran, Boolean outros, String infoadicional) {
         this.nomePacote = nomePacote;
-        this.valor = valor;
+        this.valorCarro = valorCarro;
+        this.valorMoto = valorMoto;
+        this.valorCaminhao = valorCaminhao;
         this.lavajato_Id = lavajato_Id;
         this.lavagemc = lavagemc;
         this.lavagems = lavagems;
@@ -41,7 +47,9 @@ public class Servico {
     
     public Servico() {
         this.nomePacote = "";
-        this.valor = 0;
+        this.valorMoto = 0;
+        this.valorCarro = 0;
+        this.valorCaminhao = 0;
         this.lavajato_Id = 0;
         this.lavagemc = false;
         this.lavagems = false;
@@ -66,14 +74,6 @@ public class Servico {
 
     public void setNomePacote(String nomePacote) {
         this.nomePacote = nomePacote;
-    }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
     }
 
     public int getLavajato_Id() {
@@ -138,5 +138,29 @@ public class Servico {
 
     public void setInfoadicional(String infoadicional) {
         this.infoadicional = infoadicional;
+    }
+
+    public float getValorCarro() {
+        return valorCarro;
+    }
+
+    public void setValorCarro(float valorCarro) {
+        this.valorCarro = valorCarro;
+    }
+
+    public float getValorMoto() {
+        return valorMoto;
+    }
+
+    public void setValorMoto(float valorMoto) {
+        this.valorMoto = valorMoto;
+    }
+
+    public float getValorCaminhao() {
+        return valorCaminhao;
+    }
+
+    public void setValorCaminhao(float valorCaminhao) {
+        this.valorCaminhao = valorCaminhao;
     }
 }

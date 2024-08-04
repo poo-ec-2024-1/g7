@@ -1,20 +1,31 @@
 package com.lavamarket;
 
+
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.Action;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SelectedLojaController implements Initializable {
@@ -23,7 +34,11 @@ public class SelectedLojaController implements Initializable {
     @FXML
     private TableColumn<ServicoModel, String> nomeColumn;
     @FXML
-    private TableColumn<ServicoModel, Float> precoColumn;
+    private TableColumn<ServicoModel, Float> precoCarroColumn;
+    @FXML
+    private TableColumn<ServicoModel, Float> precoMotoColumn;
+    @FXML
+    private TableColumn<ServicoModel, Float> precoCaminhaoColumn;
 
     @FXML
     private CheckBox lavagemc;
@@ -40,18 +55,30 @@ public class SelectedLojaController implements Initializable {
     @FXML
     private TextArea infoAdicional;
     @FXML
-    private TextArea valorPacote;
+    private Label valorPacote;
     @FXML
     private ChoiceBox<String> veiculo;
-
-    private Cliente cliente;
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+    @FXML
+    private DatePicker dataAgendamento;
+    @FXML
+    private TextField idField;
+    @FXML
+    private Label dataError;
+    @FXML
+    private Label veiculoError;
+    @FXML
+    private Label servicoError;
+    @FXML
+    private Button botaoAgendamento;
+    
     private Loja loja;
-    public void setLoja(Loja loja) {
+    private Cliente cliente;
+
+    public SelectedLojaController(Cliente cliente, Loja loja) {
+        this.cliente = cliente;
         this.loja = loja;
     }
+ 
     
     List<ServicoModel> servicos = new ArrayList<>();
     ObservableList<ServicoModel> servicosObs;
@@ -60,28 +87,50 @@ public class SelectedLojaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        nomeColumn.setCellValueFactory(new PropertyValueFactory<ServicoModel, String>("nomePacote"));
+        precoCarroColumn.setCellValueFactory(new PropertyValueFactory<ServicoModel, Float>("valorCarro"));
+        precoMotoColumn.setCellValueFactory(new PropertyValueFactory<ServicoModel, Float>("valorMoto"));
+        precoCaminhaoColumn.setCellValueFactory(new PropertyValueFactory<ServicoModel, Float>("valorCaminhao"));
+        veiculo.setOnAction(this::setChoicebox);
+        setChoicebox(null);
+        loadServicos();
     }
 
-    @FXML
-    private void startServico(Event event){
-        nomeColumn.setCellValueFactory(new PropertyValueFactory<ServicoModel, String>("nomePacote"));
-        precoColumn.setCellValueFactory(new PropertyValueFactory<ServicoModel, Float>("valor"));
-        loadServicos();
+    private void setChoicebox(ActionEvent event){
         try{
             if (veiculo.getItems().isEmpty()){
                 for (Veiculo veiculo : App.veiculoRepository.loadAllFromClienteId(cliente.getId())) {
                     veiculosApelidos.add(veiculo.getApelido());
                 }
                 veiculo.getItems().addAll(veiculosApelidos);
-            }
-        }catch(NullPointerException e){
+                
+            }  
+            setPreco();
+        }catch(Exception e){
             App.print("ERRO NA CLASSE SelectedLojaController durante a inicialização: ",e.getMessage());
         }
     }
+
+
+    private void setPreco(){
+        if (veiculo.getValue() == null){
+            return;
+        } else if (App.veiculoRepository.loadFromApelido(veiculo.getValue()).getTipo().equals("Moto")){
+            String valor = String.valueOf(tabelaServicos.getSelectionModel().getSelectedItem().getValorMoto());
+            valorPacote.setText("Preço: " + valor + "R$");
+        } else if (App.veiculoRepository.loadFromApelido(veiculo.getValue()).getTipo().equals("Carro")){
+            String valor = String.valueOf(tabelaServicos.getSelectionModel().getSelectedItem().getValorCarro());
+            valorPacote.setText("Preço: " + valor + "R$");
+        } else if (App.veiculoRepository.loadFromApelido(veiculo.getValue()).getTipo().equals("Caminhão")){
+            String valor = String.valueOf(tabelaServicos.getSelectionModel().getSelectedItem().getValorCaminhao());
+            valorPacote.setText("Preço: " + valor + "R$");
+        }
+    }
+
     private void loadServicos(){
         try{
             for (Servico servico : App.servicoRepository.loadAllFromLojaId(loja.getId())) {
-                ServicoModel servicoModel = new ServicoModel(servico.getId(), servico.getNomePacote(), servico.getValor());
+                ServicoModel servicoModel = new ServicoModel(servico.getId(), servico.getNomePacote(), servico.getValorCarro(), servico.getValorMoto(), servico.getValorCaminhao());
                 servicos.add(servicoModel);
             }
             if (this.servicos != null) {
@@ -95,15 +144,72 @@ public class SelectedLojaController implements Initializable {
     }
     @FXML
     private void selectServico(){
-        Servico servico = App.servicoRepository.loadFromId(tabelaServicos.getSelectionModel().getSelectedItem().getId());
-        lavagemc.setSelected(servico.isLavagemc());
-        lavagems.setSelected(servico.isLavagems());
-        lavagemt.setSelected(servico.isLavagemt());
-        cerap.setSelected(servico.isCerap());
-        ceran.setSelected(servico.isCeran());
-        outros.setSelected(servico.isOutros());
-        infoAdicional.setText(servico.getInfoadicional());
-        valorPacote.setText(String.valueOf(servico.getValor()));
+        try{
+            Servico servico = App.servicoRepository.loadFromId(tabelaServicos.getSelectionModel().getSelectedItem().getId());
+            lavagemc.setSelected(servico.isLavagemc());
+            lavagems.setSelected(servico.isLavagems());
+            lavagemt.setSelected(servico.isLavagemt());
+            cerap.setSelected(servico.isCerap());
+            ceran.setSelected(servico.isCeran());
+            outros.setSelected(servico.isOutros());
+            infoAdicional.setText(servico.getInfoadicional());
+            idField.setText(String.valueOf(servico.getId()));
+            setPreco();
+        }catch(NullPointerException e){
+            App.print("ERRO NA CLASSE SelectedLojaController durante a seleção do serviço: ",e.getMessage());
+        }
     }
 
+    @FXML
+    private void dataAgendamento(){
+            LocalDate data = dataAgendamento.getValue();
+            String dataFormatada = data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            dataAgendamento.setPromptText(dataFormatada);
+    }
+
+    @FXML
+    private void agendar(){
+        try{
+            if (validaAgendamento()){
+                int idVeiculo = App.veiculoRepository.loadFromApelido(veiculo.getValue()).getId();
+                int idServico = Integer.parseInt(idField.getText());
+                Date data = Date.valueOf(dataAgendamento.getValue());
+                Agendamento agendamento = new Agendamento(cliente.getId(), loja.getId(), idVeiculo, idServico, data);
+                App.agendamentoRepository.create(agendamento);
+                botaoAgendamento.setText("Agendamento realizado com sucesso");
+            }
+        }catch(NullPointerException e){
+            App.print("ERRO NA CLASSE SelectedLojaController durante o agendamento: ",e.getMessage());
+        }
+    }
+
+    private Boolean validaAgendamento(){
+        if (idField.getText().isEmpty()){
+            servicoError.setVisible(true);
+            return false;
+        } else {
+            servicoError.setVisible(false);
+        }
+        if (veiculo.getValue() == null){
+            veiculoError.setVisible(true);
+            return false;
+        } else {
+            veiculoError.setVisible(false);
+        }
+        if (dataAgendamento.getValue() == null){
+            dataError.setVisible(true);
+            return false;
+        } else {
+            dataError.setVisible(false);
+        }
+        for (Agendamento agendamento : App.agendamentoRepository.loadAll()) {
+            if (agendamento.getData().equals(Date.valueOf(dataAgendamento.getValue())) && agendamento.getIdLoja() == loja.getId()){
+                botaoAgendamento.setText("Data já agendada");
+                return false;
+            } else {
+                botaoAgendamento.setText("Agendar lavagem");
+            }
+        }
+        return true;
+    }
 }

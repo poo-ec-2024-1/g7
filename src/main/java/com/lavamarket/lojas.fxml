@@ -110,7 +110,11 @@
                                           <Button mnemonicParsing="false" onAction="#adicionarFuncionario" text="Adicionar" GridPane.rowIndex="6" />
                                           <Button fx:id="atualizarFuncionarioButton" disable="true" mnemonicParsing="false" onAction="#updateFuncionario" text="Atualizar" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                           <Button mnemonicParsing="false" onAction="#removeFuncionario" text="Remover" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                          <Label fx:id="erro" text="&lt;- Somente números!" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                          <Label fx:id="erro" text="Somente números" textAlignment="CENTER" textFill="RED" underline="true" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                          <Label fx:id="cpfErro" textAlignment="CENTER" textFill="RED" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                          <Label fx:id="telefoneErro" textAlignment="CENTER" textFill="RED" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                          <Label fx:id="nomeErro" disable="true" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                          <Label fx:id="valoresNulos" text="Os valores não podem ser nulos" textAlignment="CENTER" textFill="RED" underline="true" visible="false" wrapText="true" GridPane.columnIndex="2" />
                                        </children>
                                     </GridPane>
                                  </children>
@@ -132,7 +136,9 @@
                                     <TableView fx:id="tabelaServicos" onMouseClicked="#selectServico" prefHeight="158.0" prefWidth="56.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
                                         <TableColumn fx:id="nomePacote" prefWidth="75.0" text="Nome" />
-                                          <TableColumn fx:id="valor" prefWidth="75.0" text="Valor" />
+                                          <TableColumn fx:id="valorCarro" prefWidth="75.0" text="Preço carro" />
+                                          <TableColumn fx:id="valorMoto" prefWidth="75.0" text="Preço moto" />
+                                          <TableColumn fx:id="valorCaminhao" prefWidth="75.0" text="Preço caminhão" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -165,21 +171,24 @@
                                           <CheckBox fx:id="outros" mnemonicParsing="false" text="Outros" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                           <TextField fx:id="infoadicionalField" maxHeight="60.0" promptText="Informações Adicionais" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                           <Button mnemonicParsing="false" onAction="#adicionarServico" text="Registrar" GridPane.rowIndex="5" />
-                                          <Label text="Serviços Disponíveis" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1">
+                                          <Label fx:id="erroCheckbox" text="Ao menos um serviço deve ser selecionado" textAlignment="CENTER" textFill="RED" underline="true" visible="false" wrapText="true" GridPane.columnIndex="1">
                                              <font>
-                                                <Font name="System Bold" size="18.0" />
+                                                <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
                                           <TextField fx:id="nomeServicoField" maxHeight="50.0" maxWidth="110.0" promptText="Nome do Pacote" GridPane.rowIndex="3" />
                                           <Button fx:id="atualizarServicoButton" disable="true" mnemonicParsing="false" onAction="#updateServico" text="Atualizar" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                           <Button mnemonicParsing="false" onAction="#removeServico" text="Remover" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                          <TextField fx:id="valorServicoField" maxHeight="50.0" maxWidth="110.0" promptText="Valor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField fx:id="valorCarroField" maxHeight="50.0" maxWidth="110.0" promptText="Preço carro" GridPane.rowIndex="4" />
                                           <TextField fx:id="servicoIDField" disable="true" maxHeight="20.0" maxWidth="60.0" promptText="ID" />
-                                          <Label fx:id="erroServico" text="Somente Números no Valor" textAlignment="CENTER" textFill="#da3333" underline="true" visible="false" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <Label fx:id="erroServico" text="Somente Números no Valor" textAlignment="CENTER" textFill="#da3333" underline="true" visible="false" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
+                                          <TextField fx:id="valorMotoField" maxHeight="50.0" maxWidth="110.0" promptText="Preço moto" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <TextField fx:id="valorCaminhaoField" maxHeight="50.0" maxWidth="110.0" promptText="Preço caminhão" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                          <Label fx:id="valoresNulosServicos" text="Os valores das caixas de texto não podem ser nulas" textAlignment="CENTER" textFill="RED" underline="true" visible="false" wrapText="true" GridPane.columnIndex="2" />
                                        </children>
                                     </GridPane>
                                  </children>

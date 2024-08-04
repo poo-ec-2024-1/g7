@@ -8,10 +8,10 @@ public class Veiculo {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField
+    @DatabaseField(unique = true)
     private String apelido;
 
-    @DatabaseField
+    @DatabaseField(unique = true)
     private String placa;
 
     @DatabaseField

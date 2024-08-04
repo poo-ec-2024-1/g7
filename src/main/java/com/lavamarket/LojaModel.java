@@ -7,20 +7,26 @@ import javafx.beans.property.SimpleStringProperty;
 public class LojaModel {
     private final SimpleStringProperty nome;
     private final SimpleFloatProperty review;
-    private final SimpleFloatProperty precomedio;
+    private final SimpleFloatProperty precomedioCarro;
+    private final SimpleFloatProperty precomedioMoto;
+    private final SimpleFloatProperty precomedioCaminhao;
     private final SimpleIntegerProperty id;
 
-    public LojaModel(String nome, float review, float precomedio, int id) {
+    public LojaModel(String nome, float review, float precomedioCarro, float precomedioMoto, float precomedioCaminhao, int id) {
         this.nome = new SimpleStringProperty(nome);
         this.review = new SimpleFloatProperty(review);
-        this.precomedio = new SimpleFloatProperty(precomedio);
+        this.precomedioCarro = new SimpleFloatProperty(precomedioCarro);
+        this.precomedioMoto = new SimpleFloatProperty(precomedioMoto);
+        this.precomedioCaminhao = new SimpleFloatProperty(precomedioCaminhao);
         this.id = new SimpleIntegerProperty(id);
     }
 
     public LojaModel() {
         this.nome = new SimpleStringProperty();
         this.review = new SimpleFloatProperty();
-        this.precomedio = new SimpleFloatProperty();
+        this.precomedioCarro = new SimpleFloatProperty();
+        this.precomedioMoto = new SimpleFloatProperty();
+        this.precomedioCaminhao = new SimpleFloatProperty();
         this.id = new SimpleIntegerProperty();
     }
 
@@ -40,12 +46,12 @@ public class LojaModel {
         this.review.set(review);
     }
 
-    public float getPrecomedio() {
-        return precomedio.get();
+    public float getPrecomedioCarro() {
+        return precomedioCarro.get();
     }
 
-    public void setPrecomedio(float precomedio) {
-        this.precomedio.set(precomedio);
+    public void setPrecomedioCarro(float precomedioCarro) {
+        this.precomedioCarro.set(precomedioCarro);
     }
 
     public SimpleStringProperty nomeProperty() {
@@ -56,8 +62,8 @@ public class LojaModel {
         return review;
     }
 
-    public SimpleFloatProperty precomedioProperty() {
-        return precomedio;
+    public SimpleFloatProperty precomedioCarroProperty() {
+        return precomedioCarro;
     }
 
     public int getId() {
@@ -70,5 +76,29 @@ public class LojaModel {
 
     public void setId(int id) {
         this.id.set(id);
+    }
+
+    public float getPrecomedioMoto() {
+        return precomedioMoto.get();
+    }
+
+    public SimpleFloatProperty precomedioMotoProperty() {
+        return precomedioMoto;
+    }
+
+    public void setPrecomedioMoto(float precomedioMoto) {
+        this.precomedioMoto.set(precomedioMoto);
+    }
+
+    public float getPrecomedioCaminhao() {
+        return precomedioCaminhao.get();
+    }
+
+    public SimpleFloatProperty precomedioCaminhaoProperty() {
+        return precomedioCaminhao;
+    }
+
+    public void setPrecomedioCaminhao(float precomedioCaminhao) {
+        this.precomedioCaminhao.set(precomedioCaminhao);
     }
 }

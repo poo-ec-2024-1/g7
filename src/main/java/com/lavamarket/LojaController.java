@@ -54,7 +54,11 @@ public class LojaController  {
     @FXML
     private TableColumn<ServicoModel, String> nomePacote;
     @FXML
-    private TableColumn<ServicoModel, Float> valor;
+    private TableColumn<ServicoModel, Float> valorCarro;
+    @FXML
+    private TableColumn<ServicoModel, Float> valorMoto;
+    @FXML
+    private TableColumn<ServicoModel, Float> valorCaminhao;
 
     @FXML
     private CheckBox lavagemc;
@@ -73,13 +77,29 @@ public class LojaController  {
     @FXML
     private TextField nomeServicoField;
     @FXML
-    private TextField valorServicoField;
+    private TextField valorCarroField;
+    @FXML
+    private TextField valorMotoField;
+    @FXML
+    private TextField valorCaminhaoField;
     @FXML
     private TextField servicoIDField;
     @FXML
     private Label erroServico;
     @FXML
     private Button atualizarServicoButton;
+    @FXML
+    private Label valoresNulos;
+    @FXML
+    private Label nomeErro;
+    @FXML
+    private Label cpfErro;
+    @FXML
+    private Label telefoneErro;
+    @FXML
+    private Label valoresNulosServicos;
+    @FXML
+    private Label erroCheckbox;
 
 
 
@@ -111,13 +131,11 @@ public class LojaController  {
     @FXML
     private void adicionarFuncionario(ActionEvent event) {
         try {
-            try{
+            if (validaAdicaoFuncionario()){
                 Funcionario f = new Funcionario(nomeField.getText(), cpfField.getText(), telefoneField.getText(), enderecoField.getText(), Double.parseDouble(salarioField.getText()), loja.getId());
                 App.funcionarioRepository.create(f);
                 loadFuncionarios();
                 clearFuncionarios();
-            } catch (NumberFormatException e) {
-                erro.setVisible(true);
             }
         } catch (Exception e) {
             System.out.println("ERRO AO ADICIONAR FUNCIONARIO: " + e);
@@ -185,20 +203,20 @@ public class LojaController  {
     @FXML
     private void startServicos(Event event) {
         nomePacote.setCellValueFactory(new PropertyValueFactory<ServicoModel, String>("nomePacote"));
-        valor.setCellValueFactory(new PropertyValueFactory<ServicoModel, Float>("valor"));
+        valorCarro.setCellValueFactory(new PropertyValueFactory<ServicoModel, Float>("valorCarro"));
+        valorMoto.setCellValueFactory(new PropertyValueFactory<ServicoModel, Float>("valorMoto"));
+        valorCaminhao.setCellValueFactory(new PropertyValueFactory<ServicoModel, Float>("valorCaminhao"));
         loadServicos();
     }
 
     @FXML
     private void adicionarServico(ActionEvent event) {
         try {
-            try{
-                Servico s = new Servico(nomeServicoField.getText(), Float.parseFloat(valorServicoField.getText()), loja.getId(), lavagemc.isSelected(), lavagems.isSelected(), lavagemt.isSelected(), cerap.isSelected(), ceran.isSelected(), outros.isSelected(), infoadicionalField.getText());
+            if (validaServicoAdiciona()) {
+                Servico s = new Servico(nomeServicoField.getText(), Float.parseFloat(valorCarroField.getText()), Float.parseFloat(valorMotoField.getText()), Float.parseFloat(valorCaminhaoField.getText()), loja.getId(), lavagemc.isSelected(), lavagems.isSelected(), lavagemt.isSelected(), cerap.isSelected(), ceran.isSelected(), outros.isSelected(), infoadicionalField.getText());
                 App.servicoRepository.create(s);
                 loadServicos();
                 clearServicos();
-            } catch (NumberFormatException e) {
-                erroServico.setVisible(true);
             }
         } catch (Exception e) {
             System.out.println("ERRO AO ADICIONAR SERVICO: " + e);
@@ -219,10 +237,12 @@ public class LojaController  {
     @FXML
     private void updateServico(ActionEvent event) {
         try {
-            try{
+            if (validaSericoUpdate()){
                 Servico s = App.servicoRepository.loadFromId(Integer.parseInt(servicoIDField.getText()));
                 s.setNomePacote(nomeServicoField.getText());
-                s.setValor(Float.parseFloat(valorServicoField.getText()));
+                s.setValorCarro(Float.parseFloat(valorCarroField.getText()));
+                s.setValorMoto(Float.parseFloat(valorMotoField.getText()));
+                s.setValorCaminhao(Float.parseFloat(valorCaminhaoField.getText()));
                 s.setLavagemc(lavagemc.isSelected());
                 s.setLavagems(lavagems.isSelected());
                 s.setLavagemt(lavagemt.isSelected());
@@ -233,8 +253,6 @@ public class LojaController  {
                 App.servicoRepository.update(s);
                 loadServicos();
                 clearServicos();
-            } catch (NumberFormatException e) {
-                erroServico.setVisible(true);
             }
         } catch (Exception e) {
             System.out.println("ERRO AO ATUALIZAR SERVICO: "+e);
@@ -247,7 +265,9 @@ public class LojaController  {
             Servico s = App.servicoRepository.loadFromId(tabelaServicos.getSelectionModel().getSelectedItem().getId());
             servicoIDField.setText(String.valueOf(s.getId()));
             nomeServicoField.setText(s.getNomePacote());
-            valorServicoField.setText(String.valueOf(s.getValor()));
+            valorCarroField.setText(String.valueOf(s.getValorCarro()));
+            valorMotoField.setText(String.valueOf(s.getValorMoto()));
+            valorCaminhaoField.setText(String.valueOf(s.getValorCaminhao()));
             lavagemc.setSelected(s.isLavagemc());
             lavagems.setSelected(s.isLavagems());
             lavagemt.setSelected(s.isLavagemt());
@@ -264,7 +284,7 @@ public class LojaController  {
     private void loadServicos(){
         try{
             for (Servico s : App.servicoRepository.loadAllFromLojaId(loja.getId())) {
-                ServicoModel sm = new ServicoModel(s.getId(), s.getNomePacote(), s.getValor());
+                ServicoModel sm = new ServicoModel(s.getId(), s.getNomePacote(), s.getValorCarro(), s.getValorMoto(), s.getValorCaminhao());
                 servicos.add(sm);
             }
             servicosObs = FXCollections.observableArrayList(servicos);
@@ -278,7 +298,9 @@ public class LojaController  {
     private void clearServicos(){
         servicoIDField.clear();
         nomeServicoField.clear();
-        valorServicoField.clear();
+        valorCarroField.clear();
+        valorMotoField.clear();
+        valorCaminhaoField.clear();
         lavagemc.setSelected(false);
         lavagems.setSelected(false);
         lavagemt.setSelected(false);
@@ -299,4 +321,115 @@ public class LojaController  {
         atualizarFuncionarioButton.setDisable(true);
     }
 
+    private Boolean validaAdicaoFuncionario(){
+        if (nomeField.getText().isEmpty() || cpfField.getText().isEmpty() || telefoneField.getText().isEmpty() || enderecoField.getText().isEmpty() || salarioField.getText().isEmpty()) {
+            valoresNulos.setVisible(true);
+            return false;
+        }else {
+            valoresNulos.setVisible(false);
+        }
+        for (Funcionario f : App.funcionarioRepository.loadAllFromLojaId(loja.getId())) {
+            if (f.getCpf().equals(cpfField.getText())) {
+                cpfErro.setText("CPF já cadastrado");
+                cpfErro.setTextFill(javafx.scene.paint.Color.RED);
+                cpfErro.setVisible(true);
+                return false;
+            }else {
+                cpfErro.setVisible(false);
+            }
+        }
+        if (cpfField.getText().length() != 11) {
+            cpfErro.setText("CPF inválido");
+            cpfErro.setTextFill(javafx.scene.paint.Color.CRIMSON);
+            cpfErro.setVisible(true);
+            return false;
+        }
+        if (telefoneField.getText().length() != 11) {
+            telefoneErro.setText("Telefone inválido");
+            telefoneErro.setTextFill(javafx.scene.paint.Color.CRIMSON);
+            telefoneErro.setVisible(true);
+            return false;
+        }
+        try {
+            Double.parseDouble(salarioField.getText());
+            erro.setVisible(false);
+        } catch (NumberFormatException e) {
+            erro.setVisible(true);
+            return false;
+        }
+        return true;
+    }
+
+    private Boolean validaServicoAdiciona(){
+        if (nomeServicoField.getText().isEmpty() || valorCarro.getText().isEmpty() || valorMoto.getText().isEmpty() || valorCaminhao.getText().isEmpty()) {
+            valoresNulosServicos.setVisible(true);
+            return false;
+        }else {
+            valoresNulosServicos.setVisible(false);
+        }
+        for (Servico s : App.servicoRepository.loadAllFromLojaId(loja.getId())) {
+            if (s.getNomePacote().equals(nomeServicoField.getText())) {
+                erroServico.setText("Nome de pacote já cadastrado");
+                erroServico.setTextFill(javafx.scene.paint.Color.RED);
+                erroServico.setVisible(true);
+                return false;
+            }else {
+                erroServico.setVisible(false);
+            }
+        }
+        try {
+            Float.parseFloat(valorCarroField.getText());
+            Float.parseFloat(valorMotoField.getText());
+            Float.parseFloat(valorCaminhaoField.getText());
+            erroServico.setVisible(false);
+        } catch (NumberFormatException e) {
+            erroServico.setText("Somente números nos preços");
+            erroServico.setTextFill(javafx.scene.paint.Color.CRIMSON);
+            erroServico.setVisible(true);
+            return false;
+        }
+        if (!lavagemc.isSelected() && !lavagems.isSelected() && !lavagemt.isSelected() && !cerap.isSelected() && !ceran.isSelected() && !outros.isSelected()) {
+            erroCheckbox.setVisible(true);
+            return false;
+        }else {
+            erroCheckbox.setVisible(false);
+        }
+        return true;
+    }
+    public Boolean validaSericoUpdate(){
+        if (nomeServicoField.getText().isEmpty() || valorCarro.getText().isEmpty() || valorMoto.getText().isEmpty() || valorCaminhao.getText().isEmpty()) {
+            valoresNulosServicos.setVisible(true);
+            return false;
+        }else {
+            valoresNulosServicos.setVisible(false);
+        }
+        for (Servico s : App.servicoRepository.loadAllFromLojaId(loja.getId())) {
+            if (s.getNomePacote().equals(nomeServicoField.getText()) && s.getId() != Integer.parseInt(servicoIDField.getText())) {
+                erroServico.setText("Nome de pacote já cadastrado");
+                erroServico.setTextFill(javafx.scene.paint.Color.RED);
+                erroServico.setVisible(true);
+                return false;
+            }else {
+                erroServico.setVisible(false);
+            }
+        }
+        try {
+            Float.parseFloat(valorCarroField.getText());
+            Float.parseFloat(valorMotoField.getText());
+            Float.parseFloat(valorCaminhaoField.getText());
+            erroServico.setVisible(false);
+        } catch (NumberFormatException e) {
+            erroServico.setText("Somente números nos preços");
+            erroServico.setTextFill(javafx.scene.paint.Color.CRIMSON);
+            erroServico.setVisible(true);
+            return false;
+        }
+        if (!lavagemc.isSelected() && !lavagems.isSelected() && !lavagemt.isSelected() && !cerap.isSelected() && !ceran.isSelected() && !outros.isSelected()) {
+            erroCheckbox.setVisible(true);
+            return false;
+        }else {
+            erroCheckbox.setVisible(false);
+        }
+        return true;
+    }
 }

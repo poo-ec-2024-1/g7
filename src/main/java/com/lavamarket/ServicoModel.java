@@ -6,13 +6,17 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class ServicoModel {
     private final SimpleStringProperty nomePacote;
-    private final SimpleFloatProperty valor;
+    private final SimpleFloatProperty valorCarro;
     private final SimpleIntegerProperty id;
+    private final SimpleFloatProperty valorMoto;
+    private final SimpleFloatProperty valorCaminhao;
 
-    public ServicoModel(int id, String nomePacote, Float valor) {
+    public ServicoModel(int id, String nomePacote, Float valorCarro, Float valorMoto, Float valorCaminhao) {
         this.id = new SimpleIntegerProperty(id);
         this.nomePacote = new SimpleStringProperty(nomePacote);
-        this.valor = new SimpleFloatProperty(valor);
+        this.valorCarro = new SimpleFloatProperty(valorCarro);
+        this.valorMoto = new SimpleFloatProperty(valorMoto);
+        this.valorCaminhao = new SimpleFloatProperty(valorCaminhao);
     }
 
     public String getNomePacote() {
@@ -23,20 +27,20 @@ public class ServicoModel {
         this.nomePacote.set(nomePacote);
     }
 
-    public float getValor() {
-        return valor.get();
+    public float getValorCarro() {
+        return valorCarro.get();
     }
 
-    public void setValor(float valor) {
-        this.valor.set(valor);
+    public void setValorCarro(float valorCarro) {
+        this.valorCarro.set(valorCarro);
     }
 
     public SimpleStringProperty nomePacoteProperty() {
         return nomePacote;
     }
 
-    public SimpleFloatProperty valorProperty() {
-        return valor;
+    public SimpleFloatProperty valorCarroProperty() {
+        return valorCarro;
     }
 
     public int getId() {
@@ -49,5 +53,29 @@ public class ServicoModel {
 
     public void setId(int id) {
         this.id.set(id);
+    }
+
+    public float getValorMoto() {
+        return valorMoto.get();
+    }
+
+    public SimpleFloatProperty valorMotoProperty() {
+        return valorMoto;
+    }
+
+    public void setValorMoto(float valorMoto) {
+        this.valorMoto.set(valorMoto);
+    }
+
+    public float getValorCaminhao() {
+        return valorCaminhao.get();
+    }
+
+    public SimpleFloatProperty valorCaminhaoProperty() {
+        return valorCaminhao;
+    }
+
+    public void setValorCaminhao(float valorCaminhao) {
+        this.valorCaminhao.set(valorCaminhao);
     }
 }

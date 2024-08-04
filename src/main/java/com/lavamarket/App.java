@@ -24,6 +24,7 @@ public class App extends Application {
     static VeiculoRepository veiculoRepository = new VeiculoRepository(db);
     static ServicoRepository servicoRepository = new ServicoRepository(db);
     static ReviewRepository reviewRepository = new ReviewRepository(db);
+    static AgendamentoRepository agendamentoRepository = new AgendamentoRepository(db);
     
     public static void print(String s)
     {
