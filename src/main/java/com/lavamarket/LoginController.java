@@ -46,10 +46,10 @@ public class LoginController
             Cliente user1 = App.clienteRepository.loadFromUsuario(username1.getText());
             if (username1.getText().equals(user1.getUsuario()) && password1.getText().equals(user1.getSenha())) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("clientes.fxml"));
+                ClienteController controller = new ClienteController(user1);
+                loader.setController(controller);
                 Parent root = loader.load();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                ClienteController controller = loader.getController();
-                controller.setCliente(user1);
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();

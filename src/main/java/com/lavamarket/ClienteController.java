@@ -73,9 +73,24 @@ public class ClienteController {
     @FXML
     private Label erroApelido;
 
+    @FXML
+    private TextField nomeField;
+    @FXML
+    private TextField usuarioField;
+    @FXML
+    private TextField cpfField;
+    @FXML
+    private TextField telefoneField;
+    @FXML
+    private TextField senhaField;
+    @FXML
+    private TextField enderecoField;
+    @FXML
+    private Label erroCliente;
+
     private Cliente cliente;
 
-    public void setCliente(Cliente cliente) {
+    public ClienteController(Cliente cliente) {
         this.cliente = cliente;
     }
 
@@ -98,6 +113,7 @@ public class ClienteController {
         tipo.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("tipo"));
         tipoField.getItems().add("Carro");
         tipoField.getItems().add("Moto");
+        tipoField.getItems().add("Caminhão");
         loadVeiculos();
     }
 
@@ -129,7 +145,7 @@ public class ClienteController {
     @FXML
     private void updateVeiculo(ActionEvent event) {
         try {
-            if (validaAtualizacao()) {
+            if (validaAtualizacaoVeiculo()) {
                 Veiculo v = App.veiculoRepository.loadFromId(Integer.parseInt(idField.getText()));
                 v.setPlaca(placaField.getText());
                 v.setMarca(marcaField.getText());
@@ -218,6 +234,51 @@ public class ClienteController {
         }
     }
 
+    @FXML
+    private void loadCliente(Event event) {
+        nomeField.setText(cliente.getNome());
+        usuarioField.setText(cliente.getUsuario());
+        cpfField.setText(cliente.getCpf());
+        telefoneField.setText(cliente.getTelefone());
+        senhaField.setText(cliente.getSenha());
+        enderecoField.setText(cliente.getEndereco());
+    }
+
+    @FXML
+    private void updateCliente(ActionEvent event) {
+        try {
+            if (validaAtualizacaoCliente()) {
+                Cliente c = App.clienteRepository.loadFromId(cliente.getId());
+                c.setNome(nomeField.getText());
+                c.setUsuario(usuarioField.getText());
+                c.setCpf(cpfField.getText());
+                c.setTelefone(telefoneField.getText());
+                c.setSenha(senhaField.getText());
+                c.setEndereco(enderecoField.getText());
+                App.clienteRepository.update(c);
+                erroCliente.setTextFill(javafx.scene.paint.Color.GREEN);
+                erroCliente.setText("Usuário atualizado com successo");
+                erroCliente.setVisible(true);
+            }
+        } catch (Exception e) {
+            System.out.println("ERRO AO ATUALIZAR CLIENTE: "+e);
+        }
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("ERRO AO FAZER LOGOUT: "+e);
+        }
+    }
+
     private void clear(){
         idField.clear();
         placaField.clear();
@@ -272,7 +333,7 @@ public class ClienteController {
         return true;
     }
 
-    private Boolean validaAtualizacao(){
+    private Boolean validaAtualizacaoVeiculo(){
         if (apelidoField.getText().isEmpty() || placaField.getText().isEmpty() || marcaField.getText().isEmpty() || modeloField.getText().isEmpty() || corField.getText().isEmpty() || tipoField.getValue() == null) {
             valoresVazios.setVisible(true);
             return false;
@@ -312,6 +373,28 @@ public class ClienteController {
             return false;
         } else {
             erroApelido.setVisible(false);
+        }
+        return true;
+    }
+
+    private Boolean validaAtualizacaoCliente(){
+        if (nomeField.getText().isEmpty() || usuarioField.getText().isEmpty() || cpfField.getText().isEmpty() || telefoneField.getText().isEmpty() || senhaField.getText().isEmpty() || enderecoField.getText().isEmpty()) {
+            erroCliente.setText("Preencha todos os campos");
+            erroCliente.setTextFill(javafx.scene.paint.Color.RED);
+            erroCliente.setVisible(true);
+            return false;
+        } else {
+            erroCliente.setVisible(false);
+        }
+        for (Cliente c : App.clienteRepository.loadAll()) {
+            if (c.getUsuario().equals(usuarioField.getText()) && c.getId() != cliente.getId()) {
+                erroCliente.setText("Usuário já cadastrado");
+                erroCliente.setTextFill(javafx.scene.paint.Color.RED);
+                erroCliente.setVisible(true);
+                return false;
+            } else {
+                erroCliente.setVisible(false);
+            }
         }
         return true;
     }
