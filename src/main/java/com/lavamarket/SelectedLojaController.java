@@ -112,19 +112,23 @@ public class SelectedLojaController implements Initializable {
     }
 
 
-    private void setPreco(){
+    private float setPreco(){
         if (veiculo.getValue() == null){
-            return;
+            return -1;
         } else if (App.veiculoRepository.loadFromApelido(veiculo.getValue()).getTipo().equals("Moto")){
             String valor = String.valueOf(tabelaServicos.getSelectionModel().getSelectedItem().getValorMoto());
             valorPacote.setText("Preço: " + valor + "R$");
+            return App.servicoRepository.loadFromId(Integer.parseInt(idField.getText())).getValorMoto();
         } else if (App.veiculoRepository.loadFromApelido(veiculo.getValue()).getTipo().equals("Carro")){
             String valor = String.valueOf(tabelaServicos.getSelectionModel().getSelectedItem().getValorCarro());
             valorPacote.setText("Preço: " + valor + "R$");
+            return App.servicoRepository.loadFromId(Integer.parseInt(idField.getText())).getValorCarro();
         } else if (App.veiculoRepository.loadFromApelido(veiculo.getValue()).getTipo().equals("Caminhão")){
             String valor = String.valueOf(tabelaServicos.getSelectionModel().getSelectedItem().getValorCaminhao());
             valorPacote.setText("Preço: " + valor + "R$");
+            return App.servicoRepository.loadFromId(Integer.parseInt(idField.getText())).getValorCaminhao();
         }
+        return -1;
     }
 
     private void loadServicos(){
@@ -174,7 +178,7 @@ public class SelectedLojaController implements Initializable {
                 int idVeiculo = App.veiculoRepository.loadFromApelido(veiculo.getValue()).getId();
                 int idServico = Integer.parseInt(idField.getText());
                 Date data = Date.valueOf(dataAgendamento.getValue());
-                Agendamento agendamento = new Agendamento(cliente.getId(), loja.getId(), idVeiculo, idServico, data);
+                Agendamento agendamento = new Agendamento(cliente.getId(), loja.getId(), idVeiculo, idServico, data, setPreco());
                 App.agendamentoRepository.create(agendamento);
                 botaoAgendamento.setText("Agendamento realizado com sucesso");
             }
@@ -201,6 +205,9 @@ public class SelectedLojaController implements Initializable {
             return false;
         } else {
             dataError.setVisible(false);
+        }
+        if (setPreco() == -1){
+            return false;
         }
         for (Agendamento agendamento : App.agendamentoRepository.loadAll()) {
             if (agendamento.getData().equals(Date.valueOf(dataAgendamento.getValue())) && agendamento.getIdLoja() == loja.getId()){

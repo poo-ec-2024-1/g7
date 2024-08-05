@@ -28,10 +28,10 @@ public class LoginController
             Loja user = App.lojaRepository.loadFromUsuario(username.getText());
             if (username.getText().equals(user.getUsuario()) && password.getText().equals(user.getSenha())) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("lojas.fxml"));
+                LojaController controller = new LojaController(user);
+                loader.setController(controller);
                 Parent root = loader.load();
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                LojaController controller = loader.getController();
-                controller.setLoja(user);
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();

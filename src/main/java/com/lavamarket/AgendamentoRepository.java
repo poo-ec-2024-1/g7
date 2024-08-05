@@ -84,7 +84,18 @@ public class AgendamentoRepository
 
     public List<Agendamento> loadAllFromLojaId(int id){
         try {
-            this.loadedAgendamentos = dao.queryForEq("lavajato_id", id);
+            this.loadedAgendamentos = dao.queryForEq("idLoja", id);
+            if (this.loadedAgendamentos.size() != 0)
+                this.loadedAgendamento = this.loadedAgendamentos.get(0);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return this.loadedAgendamentos;
+    }
+
+    public List<Agendamento> loadAllFromClienteId(int id){
+        try {
+            this.loadedAgendamentos = dao.queryForEq("idCliente", id);
             if (this.loadedAgendamentos.size() != 0)
                 this.loadedAgendamento = this.loadedAgendamentos.get(0);
         } catch (SQLException e) {

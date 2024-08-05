@@ -19,13 +19,16 @@ public class Agendamento {
     private int idServicos;
     @DatabaseField
     private Date data;
+    @DatabaseField
+    private float valor;
 
-    public Agendamento(int idCliente, int idLoja, int idVeiculo, int idServicos, Date data) {
+    public Agendamento(int idCliente, int idLoja, int idVeiculo, int idServicos, Date data, float valor) {
         this.idCliente = idCliente;
         this.idLoja = idLoja;
         this.idVeiculo = idVeiculo;
         this.idServicos = idServicos;
         this.data = data;
+        this.valor = valor;
     }
 
     public Agendamento() {
@@ -34,6 +37,7 @@ public class Agendamento {
         this.idVeiculo = 0;
         this.idServicos = 0;
         this.data = new Date(0);
+        this.valor = 0;
     }
 
     public int getId() {
@@ -78,5 +82,13 @@ public class Agendamento {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 }

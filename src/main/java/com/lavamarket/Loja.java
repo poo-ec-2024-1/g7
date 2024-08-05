@@ -23,19 +23,16 @@ public class Loja {
     private String cnpj;
 
     @DatabaseField
-    private int precomedioCarro = 0;
+    private int precomedioCarro;
 
     @DatabaseField
-    private int precomedioMoto = 0;
+    private int precomedioMoto;
 
     @DatabaseField
-    private int precomedioCaminhao = 0;
+    private int precomedioCaminhao;
 
     @DatabaseField
     private String endereco;
-    
-    @DatabaseField
-    private String servicos = "";
 
     @DatabaseField
     private int review = 0;
@@ -83,38 +80,35 @@ public class Loja {
         this.precomedioCarro = precomedioCarro;
     }
     public int getPrecomedioCarro() {
-        App.servicoRepository.loadAllFromLojaId(this.id);
         int contagem = 0;
-        for (Servico s : App.servicoRepository.loadAll()) {
-            precomedioCarro += s.getValorCarro();
+        for (Servico s : App.servicoRepository.loadAllFromLojaId(this.id)) {
+            this.precomedioCarro += s.getValorCarro();
             contagem++;
         }
         if (contagem == 0) {
-            return precomedioCarro;
+            return this.precomedioCarro;
         }
         return this.precomedioCarro/contagem;
     }
     public int getPrecomedioMoto() {
-        App.servicoRepository.loadAllFromLojaId(this.id);
         int contagem = 0;
-        for (Servico s : App.servicoRepository.loadAll()) {
-            precomedioMoto += s.getValorMoto();
+        for (Servico s : App.servicoRepository.loadAllFromLojaId(this.id)) {
+            this.precomedioMoto += s.getValorMoto();
             contagem++;
         }
         if (contagem == 0) {
-            return precomedioMoto;
+            return this.precomedioMoto;
         }
         return this.precomedioMoto/contagem;
     }
     public int getPrecomedioCaminhao() {
-        App.servicoRepository.loadAllFromLojaId(this.id);
         int contagem = 0;
-        for (Servico s : App.servicoRepository.loadAll()) {
-            precomedioCaminhao += s.getValorCaminhao();
+        for (Servico s : App.servicoRepository.loadAllFromLojaId(this.id)) {
+            this.precomedioCaminhao += s.getValorCaminhao();
             contagem++;
         }
         if (contagem == 0) {
-            return precomedioCaminhao;
+            return this.precomedioCaminhao;
         }
         return this.precomedioCaminhao/contagem;
     }
@@ -123,12 +117,6 @@ public class Loja {
     }
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-    public String getServicos() {
-        return servicos;
-    }
-    public void setServicos(String servicos) {
-        this.servicos = servicos;
     }
     public int getId() {
         return id;
