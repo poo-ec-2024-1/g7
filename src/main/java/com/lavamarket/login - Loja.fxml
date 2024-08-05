@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lavamarket.LoginController">
+   <children>
+      <GridPane prefHeight="400.0" prefWidth="600.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="84.4" minHeight="10.0" prefHeight="84.4" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="84.4" minHeight="10.0" prefHeight="21.599987792968747" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="124.00001220703123" minHeight="10.0" prefHeight="64.19999389648436" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="124.00001220703123" minHeight="8.600006103515625" prefHeight="18.20001220703125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="112.99999389648434" minHeight="10.0" prefHeight="70.99998779296874" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="110.20001831054691" minHeight="10.0" prefHeight="64.79996337890628" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="84.39997558593751" minHeight="3.3999755859375114" prefHeight="27.20002441406251" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="118.40001220703124" minHeight="10.0" prefHeight="53.5999755859375" valignment="TOP" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="password" prefHeight="50.0" prefWidth="200.0" promptText="Digite sua Senha" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="username" prefHeight="50.0" prefWidth="200.0" promptText="Digite seu usuário" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="27.0" prefWidth="190.0" text="Login para EMPRESAS" textOverrun="CLIP" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#loginLojasButton" prefHeight="34.0" prefWidth="106.0" text="Entrar" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#registerLojasButton" prefHeight="26.0" prefWidth="78.0" text="Criar Conta" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label prefHeight="18.0" prefWidth="202.0" text="Usuário" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="18.0" prefWidth="202.0" text="Senha" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="199.0" text="Sua empresa ainda não tem conta?" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

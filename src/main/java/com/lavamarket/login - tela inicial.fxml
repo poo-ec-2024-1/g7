@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lavamarket.LoginController">
+   <children>
+      <GridPane prefHeight="400.0" prefWidth="600.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.4000244140625" minWidth="10.0" prefWidth="63.19996337890625" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="216.60000610351562" minWidth="10.0" prefWidth="180.80003662109374" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="101.39996337890625" minWidth="10.0" prefWidth="98.40004882812497" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="238.79998779296875" minWidth="10.0" prefWidth="199.20003662109372" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.199951171875" minWidth="10.0" prefWidth="57.599963378906295" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="93.59999618530273" minHeight="10.0" prefHeight="93.59999618530273" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="112.60000610351562" minHeight="10.0" prefHeight="32.000003814697266" valignment="TOP" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="375.7999633789062" minHeight="10.0" prefHeight="203.79999389648438" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="280.0" minHeight="3.0000366210937273" prefHeight="34.79997558593749" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="158.79999999999998" minHeight="0.0" prefHeight="42.80002441406248" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Aquapro" GridPane.columnIndex="2">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5de3e349" height="278.0" stroke="BLACK" strokeType="INSIDE" width="245.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button contentDisplay="BOTTOM" mnemonicParsing="false" text="ENTRAR" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5ae1e552" height="278.0" stroke="BLACK" strokeType="INSIDE" width="245.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" text="ENTRAR" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label alignment="TOP_LEFT" prefHeight="143.0" prefWidth="200.0" text="Agende seu lava-jato em segundos! A Aquapro oferece serviços rápidos, seguros e de alta qualidade para deixar seu carro impecável." textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bodoni MT" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_LEFT" prefHeight="140.0" prefWidth="167.0" text="Amplie seu alcance com a Aquapro! Cadastre seu lava-jato e conquiste novos clientes através da nossa plataforma." textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bodoni MT" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Cliente!" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Empresas!" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

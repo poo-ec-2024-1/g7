@@ -24,13 +24,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tabelaLojas" layoutX="45.0" layoutY="85.0" onMouseClicked="#selectLoja" prefHeight="200.0" prefWidth="509.0">
+                        <TableView fx:id="tabelaLojas" layoutX="20.0" layoutY="85.0" onMouseClicked="#selectLoja" prefHeight="220.0" prefWidth="558.0">
                           <columns>
-                            <TableColumn fx:id="nomeLoja" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="140.0" text="Empresa" />
-                            <TableColumn fx:id="reviewLoja" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="70.0" text="Avaliação" />
-                              <TableColumn fx:id="precomedioCarroLoja" minWidth="-Infinity" prefWidth="100.0" text="Preço Médio Carro" />
-                              <TableColumn fx:id="precomedioMotoLoja" prefWidth="110.0" text="Preço Médio Moto" />
-                              <TableColumn fx:id="precomedioCaminhaoLoja" prefWidth="75.0" text="Preço Médio Caminhão" />
+                            <TableColumn fx:id="nomeLoja" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="127.20001220703125" text="Empresa" />
+                            <TableColumn fx:id="reviewLoja" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="65.60003662109375" text="Avaliação" />
+                              <TableColumn fx:id="precomedioCarroLoja" minWidth="-Infinity" prefWidth="112.0" text="Preço Médio Carro" />
+                              <TableColumn fx:id="precomedioMotoLoja" prefWidth="111.199951171875" text="Preço Médio Moto" />
+                              <TableColumn fx:id="precomedioCaminhaoLoja" prefWidth="137.60009765625" text="Preço Médio Caminhão" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -62,7 +62,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab onSelectionChanged="#startVeiculos" text="Veículo">
+            <Tab onSelectionChanged="#startVeiculos" text="Veículos">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -146,7 +146,7 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab onSelectionChanged="#loadCliente" text="Infos pessoais">
+            <Tab onSelectionChanged="#loadCliente" text="Dados pessoais">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
