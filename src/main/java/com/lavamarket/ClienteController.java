@@ -1,5 +1,6 @@
 package com.lavamarket;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -53,6 +54,17 @@ public class ClienteController {
     private TableColumn<LojaModel, Float> reviewLoja;
 
     @FXML
+    private TableView<AgendamentoModel> tabelaAgendamentos;
+    @FXML
+    private TableColumn<AgendamentoModel, String> veiculoAgendamento;
+    @FXML
+    private TableColumn<AgendamentoModel, Float> valorAgendamento;
+    @FXML
+    private TableColumn<AgendamentoModel, String> lojaAgendamento;
+    @FXML
+    private TableColumn<AgendamentoModel, Date> dataAgendamento;
+
+    @FXML
     private TextField idField;
     @FXML
     private TextField placaField;
@@ -101,6 +113,10 @@ public class ClienteController {
     List<LojaModel> lojas = new ArrayList<>();
 
     ObservableList<LojaModel> lojasObs;
+
+    List<AgendamentoModel> agendamentos = new ArrayList<>();
+
+    ObservableList<AgendamentoModel> agendamentosObs;
     
     @FXML
     private void startVeiculos(Event event) {
@@ -279,6 +295,32 @@ public class ClienteController {
         }
     }
 
+    @FXML
+    private void startAgendamentos(Event event) {
+        veiculoAgendamento.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, String>("veiculo"));
+        valorAgendamento.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, Float>("valor"));
+        lojaAgendamento.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, String>("loja"));
+        dataAgendamento.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, Date>("data"));
+
+        loadAgendamentos();
+    }
+
+    private void loadAgendamentos(){
+        try{
+            for (Agendamento a : App.agendamentoRepository.loadAllFromClienteId(cliente.getId())) {
+                Veiculo v = App.veiculoRepository.loadFromId(a.getIdVeiculo());
+                Loja l = App.lojaRepository.loadFromId(a.getIdLoja());
+                AgendamentoModel am = new AgendamentoModel(a.getData(), v.getApelido(), a.getValor(), l.getNome());
+                agendamentos.add(am);
+            }
+            agendamentosObs = FXCollections.observableArrayList(agendamentos);
+            tabelaAgendamentos.setItems(agendamentosObs);
+            agendamentos.clear();
+        } catch (Exception e) {
+            System.out.println("ERRO NA TABELA: "+e);
+        }
+    }
+
     private void clear(){
         idField.clear();
         placaField.clear();
@@ -296,7 +338,7 @@ public class ClienteController {
         } else {
             valoresVazios.setVisible(false);
         }
-        for (Veiculo v : App.veiculoRepository.loadAllFromClienteId(cliente.getId())) {
+        for (Veiculo v : App.veiculoRepository.loadAll()) {
             if (v.getPlaca().equals(placaField.getText())) {
                 erroPlaca.setText("Placa já cadastrada");
                 erroPlaca.setTextFill(javafx.scene.paint.Color.RED);

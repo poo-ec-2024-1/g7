@@ -17,6 +17,7 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    
     static Database db = new Database("Database.db");
     static ClienteRepository clienteRepository = new ClienteRepository(db);
     static LojaRepository lojaRepository = new LojaRepository(db);

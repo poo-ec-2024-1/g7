@@ -8,6 +8,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -15,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class LojaController  {
     @FXML
@@ -48,6 +53,14 @@ public class LojaController  {
     private Label erro;
     @FXML
     private Button atualizarFuncionarioButton;
+    @FXML
+    private Label valoresNulos;
+    @FXML
+    private Label nomeErro;
+    @FXML
+    private Label cpfErro;
+    @FXML
+    private Label telefoneErro;
     
     @FXML 
     private TableView<ServicoModel> tabelaServicos;
@@ -89,23 +102,27 @@ public class LojaController  {
     @FXML
     private Button atualizarServicoButton;
     @FXML
-    private Label valoresNulos;
-    @FXML
-    private Label nomeErro;
-    @FXML
-    private Label cpfErro;
-    @FXML
-    private Label telefoneErro;
-    @FXML
     private Label valoresNulosServicos;
     @FXML
     private Label erroCheckbox;
 
+    @FXML
+    private TextField nomeEmpresaField;
+    @FXML
+    private TextField cnpjField;
+    @FXML
+    private TextField usuarioField;
+    @FXML
+    private TextField senhaField;
+    @FXML
+    private TextField enderecoEmpresaField;
+    @FXML
+    private Label erroEmpresa;
 
 
     private Loja loja;
 
-    public void setLoja(Loja loja) {
+    public LojaController(Loja loja) {
         this.loja = loja;
     }
 
@@ -295,6 +312,49 @@ public class LojaController  {
         }
     }
 
+    @FXML
+    private void updateLoja(ActionEvent event) {
+        try {
+            if(validaAtualizaçãoLoja()){
+                loja.setNome(nomeEmpresaField.getText());
+                loja.setCnpj(cnpjField.getText());
+                loja.setUsuario(usuarioField.getText());
+                loja.setSenha(senhaField.getText());
+                loja.setEndereco(enderecoEmpresaField.getText());
+                App.lojaRepository.update(loja);
+            }
+        } catch (Exception e) {
+            System.out.println("ERRO AO ATUALIZAR LOJA: "+e);
+        }
+    }
+
+    @FXML
+    private void loadLoja(){
+        try {
+            nomeEmpresaField.setText(loja.getNome());
+            cnpjField.setText(loja.getCnpj());
+            usuarioField.setText(loja.getUsuario());
+            senhaField.setText(loja.getSenha());
+            enderecoEmpresaField.setText(loja.getEndereco());
+        } catch (Exception e) {
+            System.out.println("ERRO AO CARREGAR LOJA: "+e);
+        }
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show(); 
+        } catch (Exception e) {
+            System.out.println("ERRO AO FAZER LOGOUT: "+e);
+        }
+    }
+
     private void clearServicos(){
         servicoIDField.clear();
         nomeServicoField.clear();
@@ -343,12 +403,16 @@ public class LojaController  {
             cpfErro.setTextFill(javafx.scene.paint.Color.CRIMSON);
             cpfErro.setVisible(true);
             return false;
+        } else {
+            cpfErro.setVisible(false);
         }
         if (telefoneField.getText().length() != 11) {
             telefoneErro.setText("Telefone inválido");
             telefoneErro.setTextFill(javafx.scene.paint.Color.CRIMSON);
             telefoneErro.setVisible(true);
             return false;
+        } else{
+            telefoneErro.setVisible(false);
         }
         try {
             Double.parseDouble(salarioField.getText());
@@ -388,6 +452,15 @@ public class LojaController  {
             erroServico.setVisible(true);
             return false;
         }
+        if (Float.parseFloat(valorCarroField.getText()) < 0 || Float.parseFloat(valorMotoField.getText()) < 0 || Float.parseFloat(valorCaminhaoField.getText()) < 0) {
+            erroServico.setText("Preços não podem ser negativos");
+            erroServico.setTextFill(javafx.scene.paint.Color.CRIMSON);
+            erroServico.setVisible(true);
+            return false;
+        }else {
+            erroServico.setVisible(false);
+        }
+
         if (!lavagemc.isSelected() && !lavagems.isSelected() && !lavagemt.isSelected() && !cerap.isSelected() && !ceran.isSelected() && !outros.isSelected()) {
             erroCheckbox.setVisible(true);
             return false;
@@ -429,6 +502,34 @@ public class LojaController  {
             return false;
         }else {
             erroCheckbox.setVisible(false);
+        }
+        return true;
+    }
+
+    private Boolean validaAtualizaçãoLoja(){
+        if (nomeEmpresaField.getText().isEmpty() || cnpjField.getText().isEmpty() || usuarioField.getText().isEmpty() || senhaField.getText().isEmpty() || enderecoEmpresaField.getText().isEmpty()) {
+            erroEmpresa.setText("Preencha todos os campos");
+            erroEmpresa.setTextFill(javafx.scene.paint.Color.RED);
+            erroEmpresa.setVisible(true);
+            return false;
+        }else {
+            erroEmpresa.setVisible(false);
+        }
+        for (Loja l : App.lojaRepository.loadAll()) {
+            if (l.getCnpj().equals(cnpjField.getText()) && l.getId() != loja.getId()) {
+                erroEmpresa.setText("CNPJ já cadastrado");
+                erroEmpresa.setTextFill(javafx.scene.paint.Color.RED);
+                erroEmpresa.setVisible(true);
+                return false;
+            }else {
+                erroEmpresa.setVisible(false);
+            }
+            if (l.getUsuario().equals(usuarioField.getText()) && l.getId() != loja.getId()) {
+                erroEmpresa.setText("Usuário já cadastrado");
+                erroEmpresa.setTextFill(javafx.scene.paint.Color.RED);
+                erroEmpresa.setVisible(true);
+                return false;
+            }
         }
         return true;
     }
