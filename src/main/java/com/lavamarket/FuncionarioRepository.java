@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class FuncionarioRepository
 {
-    private static Database database;
     private static Dao<Funcionario, Integer> dao;
     private List<Funcionario> loadedFuncionarios;
     private Funcionario loadedFuncionario; 
@@ -20,7 +19,6 @@ public class FuncionarioRepository
     }
     
     public static void setDatabase(Database database) {
-        FuncionarioRepository.database = database;
         try {
             dao = DaoManager.createDao(database.getConnection(), Funcionario.class);
             TableUtils.createTableIfNotExists(database.getConnection(), Funcionario.class);

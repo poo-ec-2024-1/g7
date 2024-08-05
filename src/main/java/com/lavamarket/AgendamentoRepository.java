@@ -1,3 +1,9 @@
+/**
+ * Classe gerenciadora do banco de dados dos agendamentos
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import com.j256.ormlite.dao.DaoManager;
@@ -9,18 +15,26 @@ import java.util.ArrayList;
 
 public class AgendamentoRepository
 {
-    private static Database database;
     private static Dao<Agendamento, Integer> dao;
     private List<Agendamento> loadedAgendamentos;
     private Agendamento loadedAgendamento; 
     
+    /**
+     * Metodo construtor da classe 
+     * 
+     * @param database
+     */
     public AgendamentoRepository(Database database) {
         AgendamentoRepository.setDatabase(database);
         loadedAgendamentos = new ArrayList<Agendamento>();
     }
     
+    /**
+     * Metodo Setter do banco de dados
+     * 
+     * @param database
+     */
     public static void setDatabase(Database database) {
-        AgendamentoRepository.database = database;
         try {
             dao = DaoManager.createDao(database.getConnection(), Agendamento.class);
             TableUtils.createTableIfNotExists(database.getConnection(), Agendamento.class);
@@ -30,6 +44,12 @@ public class AgendamentoRepository
         }            
     }
     
+    /**
+     * Metodo usado para criar o banco de dados de agendamentos
+     * 
+     * @param cliente
+     * @return
+     */
     public Agendamento create(Agendamento cliente) {
         int nrows = 0;
         try {
@@ -44,6 +64,11 @@ public class AgendamentoRepository
         return cliente;
     }    
 
+    /**
+     * Metodo de atualização do banco de dados
+     * 
+     * @param cliente
+     */
     public void update(Agendamento cliente) {
         try {
             dao.update(cliente);
@@ -52,6 +77,11 @@ public class AgendamentoRepository
         }
     }
 
+    /**
+     * Metodo de deletar itens do banco de dados
+     * 
+     * @param cliente
+     */
     public void delete(Agendamento cliente) {
         try{
             dao.delete(cliente);
@@ -59,7 +89,13 @@ public class AgendamentoRepository
             System.out.println(e);
         }
     }
-    
+
+    /**
+     * Metodo de carregamento de banco de dados
+     * 
+     * @param id
+     * @return
+     */
     public Agendamento loadFromId(int id) {
         try {
             this.loadedAgendamento = dao.queryForId(id);
@@ -71,6 +107,12 @@ public class AgendamentoRepository
         return this.loadedAgendamento;
     }
     
+    /**
+     * Metodo de carregamento pelo usuario
+     * 
+     * @param usuario
+     * @return
+     */
     public Agendamento loadFromUsuario(String usuario) {
         try {
             this.loadedAgendamento = dao.queryForEq("usuario", usuario).get(0);
@@ -82,6 +124,12 @@ public class AgendamentoRepository
         return this.loadedAgendamento;
     }
 
+    /**
+     * Metodo de carregamento pelo ID da loja
+     * 
+     * @param id
+     * @return
+     */
     public List<Agendamento> loadAllFromLojaId(int id){
         try {
             this.loadedAgendamentos = dao.queryForEq("idLoja", id);
@@ -93,6 +141,12 @@ public class AgendamentoRepository
         return this.loadedAgendamentos;
     }
 
+    /**
+     * Metodo de carregamento pelo Id do cliente
+     * 
+     * @param id
+     * @return
+     */
     public List<Agendamento> loadAllFromClienteId(int id){
         try {
             this.loadedAgendamentos = dao.queryForEq("idCliente", id);
@@ -104,6 +158,11 @@ public class AgendamentoRepository
         return this.loadedAgendamentos;
     }
     
+    /**
+     * Metodo que carrega todo o banco de dados
+     * 
+     * @return
+     */
     public List<Agendamento> loadAll() {
         try {
             this.loadedAgendamentos =  dao.queryForAll();

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class VeiculoRepository
 {
-    private static Database database;
     private static Dao<Veiculo, Integer> dao;
     private List<Veiculo> loadedVeiculos;
     private Veiculo loadedVeiculo; 
@@ -20,7 +19,6 @@ public class VeiculoRepository
     }
     
     public static void setDatabase(Database database) {
-        VeiculoRepository.database = database;
         try {
             dao = DaoManager.createDao(database.getConnection(), Veiculo.class);
             TableUtils.createTableIfNotExists(database.getConnection(), Veiculo.class);

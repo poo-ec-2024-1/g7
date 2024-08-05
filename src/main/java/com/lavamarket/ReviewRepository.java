@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class ReviewRepository
 {
-    private static Database database;
     private static Dao<Review, Integer> dao;
     private List<Review> loadedReviews;
     private Review loadedReview; 
@@ -20,7 +19,6 @@ public class ReviewRepository
     }
     
     public static void setDatabase(Database database) {
-        ReviewRepository.database = database;
         try {
             dao = DaoManager.createDao(database.getConnection(), Review.class);
             TableUtils.createTableIfNotExists(database.getConnection(), Review.class);
