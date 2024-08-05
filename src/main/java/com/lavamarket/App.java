@@ -7,6 +7,14 @@
 package com.lavamarket;
 
 
+import com.lavamarket.Agendamento.AgendamentoRepository;
+import com.lavamarket.Cliente.ClienteRepository;
+import com.lavamarket.Funcionario.FuncionarioRepository;
+import com.lavamarket.Loja.LojaRepository;
+import com.lavamarket.Review.ReviewRepository;
+import com.lavamarket.Serviço.ServicoRepository;
+import com.lavamarket.Veiculo.VeiculoRepository;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,13 +39,13 @@ public class App extends Application {
     
     // Inicializadores dos bancos de dados a serem ultilizados pelo programa
     static Database db = new Database("Database.db");
-    static ClienteRepository clienteRepository = new ClienteRepository(db);
-    static LojaRepository lojaRepository = new LojaRepository(db);
-    static FuncionarioRepository funcionarioRepository = new FuncionarioRepository(db);
-    static VeiculoRepository veiculoRepository = new VeiculoRepository(db);
-    static ServicoRepository servicoRepository = new ServicoRepository(db);
-    static ReviewRepository reviewRepository = new ReviewRepository(db);
-    static AgendamentoRepository agendamentoRepository = new AgendamentoRepository(db);
+    public static ClienteRepository clienteRepository = new ClienteRepository(db);
+    public static LojaRepository lojaRepository = new LojaRepository(db);
+    public static FuncionarioRepository funcionarioRepository = new FuncionarioRepository(db);
+    public static VeiculoRepository veiculoRepository = new VeiculoRepository(db);
+    public static ServicoRepository servicoRepository = new ServicoRepository(db);
+    public static ReviewRepository reviewRepository = new ReviewRepository(db);
+    public static AgendamentoRepository agendamentoRepository = new AgendamentoRepository(db);
     
     /**
      * Metodo principal da aplicação 

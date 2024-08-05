@@ -1,5 +1,7 @@
 package com.lavamarket;
 
+import com.lavamarket.Loja.Loja;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
