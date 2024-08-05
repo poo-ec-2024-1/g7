@@ -73,7 +73,7 @@ public class VeiculoRepository
     
     public Veiculo loadFromUsuario(String usuario) {
         try {
-            this.loadedVeiculo = dao.queryForEq("usuario", usuario).getFirst();
+            this.loadedVeiculo = dao.queryForEq("usuario", usuario).get(0);
             if (this.loadedVeiculo != null)
                 this.loadedVeiculos.add(this.loadedVeiculo);
         } catch (SQLException e) {
@@ -95,7 +95,7 @@ public class VeiculoRepository
 
     public Veiculo loadFromApelido(String apelido) {
         try {
-            this.loadedVeiculo = dao.queryForEq("apelido", apelido).getFirst();
+            this.loadedVeiculo = dao.queryForEq("apelido", apelido).get(0);
             if (this.loadedVeiculo != null)
                 this.loadedVeiculos.add(this.loadedVeiculo);
         } catch (SQLException e) {
@@ -106,7 +106,7 @@ public class VeiculoRepository
 
     public Veiculo loadFromPlaca(String placa) {
         try {
-            this.loadedVeiculo = dao.queryForEq("placa", placa).getFirst();
+            this.loadedVeiculo = dao.queryForEq("placa", placa).get(0);
             if (this.loadedVeiculo != null)
                 this.loadedVeiculos.add(this.loadedVeiculo);
         } catch (SQLException e) {

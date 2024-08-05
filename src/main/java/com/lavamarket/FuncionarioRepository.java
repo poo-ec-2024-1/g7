@@ -73,7 +73,7 @@ public class FuncionarioRepository
     
     public Funcionario loadFromUsuario(String usuario) {
         try {
-            this.loadedFuncionario = dao.queryForEq("usuario", usuario).getFirst();
+            this.loadedFuncionario = dao.queryForEq("usuario", usuario).get(0);
             if (this.loadedFuncionario != null)
                 this.loadedFuncionarios.add(this.loadedFuncionario);
         } catch (SQLException e) {

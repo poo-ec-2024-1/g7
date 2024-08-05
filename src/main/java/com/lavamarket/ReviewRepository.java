@@ -73,7 +73,7 @@ public class ReviewRepository
     
     public Review loadFromUsuario(String usuario) {
         try {
-            this.loadedReview = dao.queryForEq("usuario", usuario).getFirst();
+            this.loadedReview = dao.queryForEq("usuario", usuario).get(0);
             if (this.loadedReview != null)
                 this.loadedReviews.add(this.loadedReview);
         } catch (SQLException e) {

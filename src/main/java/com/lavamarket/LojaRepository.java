@@ -73,7 +73,7 @@ public class LojaRepository
 
     public Loja loadFromUsuario(String usuario) {
         try {
-            this.loadedLoja = dao.queryForEq("usuario", usuario).getFirst();
+            this.loadedLoja = dao.queryForEq("usuario", usuario).get(0);
             if (this.loadedLoja != null)
                 this.loadedLojas.add(this.loadedLoja);
         } catch (SQLException e) {

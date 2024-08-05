@@ -73,7 +73,7 @@ public class ClienteRepository
     
     public Cliente loadFromUsuario(String usuario) {
         try {
-            this.loadedCliente = dao.queryForEq("usuario", usuario).getFirst();
+            this.loadedCliente = dao.queryForEq("usuario", usuario).get(0);
             if (this.loadedCliente != null)
                 this.loadedClientes.add(this.loadedCliente);
         } catch (SQLException e) {

@@ -73,7 +73,7 @@ public class ServicoRepository
     
     public Servico loadFromUsuario(String usuario) {
         try {
-            this.loadedServico = dao.queryForEq("usuario", usuario).getFirst();
+            this.loadedServico = dao.queryForEq("usuario", usuario).get(0);
             if (this.loadedServico != null)
                 this.loadedServicos.add(this.loadedServico);
         } catch (SQLException e) {

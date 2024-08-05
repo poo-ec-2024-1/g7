@@ -73,7 +73,7 @@ public class AgendamentoRepository
     
     public Agendamento loadFromUsuario(String usuario) {
         try {
-            this.loadedAgendamento = dao.queryForEq("usuario", usuario).getFirst();
+            this.loadedAgendamento = dao.queryForEq("usuario", usuario).get(0);
             if (this.loadedAgendamento != null)
                 this.loadedAgendamentos.add(this.loadedAgendamento);
         } catch (SQLException e) {
