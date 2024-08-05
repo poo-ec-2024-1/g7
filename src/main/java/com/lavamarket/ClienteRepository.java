@@ -1,3 +1,9 @@
+/**
+ * Classe repositorio do cliente
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import com.j256.ormlite.dao.DaoManager;
@@ -13,11 +19,20 @@ public class ClienteRepository
     private List<Cliente> loadedClientes;
     private Cliente loadedCliente; 
     
+    /**
+     * metodo construtor do repositorio do cliente
+     * @param database
+     */
     public ClienteRepository(Database database) {
         ClienteRepository.setDatabase(database);
         loadedClientes = new ArrayList<Cliente>();
     }
     
+    /**
+     * Metodo que seta o banco de dados do cliente
+     * 
+     * @param database
+     */
     public static void setDatabase(Database database) {
         try {
             dao = DaoManager.createDao(database.getConnection(), Cliente.class);
@@ -28,6 +43,12 @@ public class ClienteRepository
         }            
     }
     
+    /**
+     * Metodo que cria o cliente
+     * 
+     * @param cliente
+     * @return
+     */
     public Cliente create(Cliente cliente) {
         int nrows = 0;
         try {
@@ -42,6 +63,11 @@ public class ClienteRepository
         return cliente;
     }    
 
+    /**
+     * Metodo que atualiza o cliente
+     * 
+     * @param cliente
+     */
     public void update(Cliente cliente) {
         try {
             dao.update(cliente);
@@ -50,6 +76,11 @@ public class ClienteRepository
         }
     }
 
+    /**
+     * Metodo que deleta o cliente
+     * 
+     * @param cliente
+     */
     public void delete(Cliente cliente) {
         try{
             dao.delete(cliente);
@@ -58,6 +89,12 @@ public class ClienteRepository
         }
     }
     
+    /**
+     * Metodo que carrega o cliente pelo id
+     * 
+     * @param id
+     * @return
+     */
     public Cliente loadFromId(int id) {
         try {
             this.loadedCliente = dao.queryForId(id);
@@ -69,6 +106,12 @@ public class ClienteRepository
         return this.loadedCliente;
     }
     
+    /**
+     * Metodo que carrega o cliente pelo usuario dele
+     * 
+     * @param usuario
+     * @return
+     */
     public Cliente loadFromUsuario(String usuario) {
         try {
             this.loadedCliente = dao.queryForEq("usuario", usuario).get(0);
@@ -80,6 +123,11 @@ public class ClienteRepository
         return this.loadedCliente;
     }
     
+    /**
+     * Metodo que carrega todo o banco de dados do cliente
+     * 
+     * @return
+     */
     public List<Cliente> loadAll() {
         try {
             this.loadedClientes =  dao.queryForAll();

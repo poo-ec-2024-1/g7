@@ -1,3 +1,9 @@
+/**
+ * Classe controladora do login 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import javafx.event.ActionEvent;
@@ -22,6 +28,12 @@ public class LoginController
     TextField password1;
 
 
+    /**
+     * Metodo que constroi o botao de logis das lojas
+     * 
+     * @param event
+     * @throws Exception
+     */
     @FXML
     private void loginLojasButton(ActionEvent event) throws Exception {
         try {
@@ -40,6 +52,13 @@ public class LoginController
             System.out.println("Falha na busca do usuario: "+e);
         }
     }
+
+    /**
+     * Metodo que constroi os botoes dos clientes
+     * 
+     * @param event
+     * @throws Exception
+     */
     @FXML
     private void loginClientesButton(ActionEvent event) throws Exception {
         try {
@@ -59,11 +78,23 @@ public class LoginController
         }
     }
 
+    /**
+     * Botão de registrar lojas
+     * 
+     * @param event
+     * @throws Exception
+     */
     @FXML
     private void registerLojasButton(ActionEvent event) throws Exception {
         Util.mudarScene("registroLojas.fxml", event, getClass());
     }
 
+    /**
+     * Botao de registrar clientes
+     * 
+     * @param event
+     * @throws Exception
+     */
     @FXML
     private void registerClientesButton(ActionEvent event) throws Exception {
         Util.mudarScene("registroClientes.fxml", event, getClass());

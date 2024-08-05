@@ -1,10 +1,14 @@
+/**
+ * Classe controladora da janela javafx 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -101,7 +105,11 @@ public class ClienteController {
     private Label erroCliente;
 
     private Cliente cliente;
-
+    /**
+    * Metodo construtor do controlador do clinte
+    *
+    * @param cliente
+    */
     public ClienteController(Cliente cliente) {
         this.cliente = cliente;
     }
@@ -119,6 +127,11 @@ public class ClienteController {
     ObservableList<AgendamentoModel> agendamentosObs;
     
     @FXML
+    /**
+     * Metodo que controla os dados nos veiculos
+     * 
+     * @param event
+     */
     private void startVeiculos(Event event) {
         id.setCellValueFactory(new PropertyValueFactory<VeiculoModel, Integer>("id"));
         apelido.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("apelido")); 
@@ -133,6 +146,11 @@ public class ClienteController {
         loadVeiculos();
     }
 
+    /**
+     * Adiciona veiculos dentro da lista
+     * 
+     * @param event
+     */
     @FXML
     private void adicionarVeiculo(ActionEvent event) {
         try {
@@ -147,6 +165,11 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Remove veiculos da lista
+     * 
+     * @param event
+     */
     @FXML
     private void removerVeiculo(ActionEvent event) {
         try {
@@ -158,6 +181,11 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Atualiza os veiculos da lista
+     *  
+     * @param event
+     */
     @FXML
     private void updateVeiculo(ActionEvent event) {
         try {
@@ -178,6 +206,11 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Seleciona os veiculos da lista
+     * 
+     * @param event
+     */
     @FXML
     private void selectVeiculo(Event event) {
         try {
@@ -194,6 +227,10 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Metodo que carrega os veiculos do repositorio do cliente
+     *  
+     */
     private void loadVeiculos(){
         try{
             for (Veiculo v : App.veiculoRepository.loadAllFromClienteId(cliente.getId())) {
@@ -208,6 +245,11 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Metodo que inicia as lojas dentro do controlador do cliente
+     * 
+     * @param event
+     */
     @FXML
     private void startLojas(Event event) {
         nomeLoja.setCellValueFactory(new PropertyValueFactory<LojaModel, Integer>("nome"));
@@ -219,6 +261,10 @@ public class ClienteController {
         loadLojas();
     }
 
+    /**
+     * Metodo que carrega as lojas dentro do controlador do cliente
+     * 
+     */
     private void loadLojas(){
         try{ 
             for (Loja l : App.lojaRepository.loadAll()) {
@@ -233,6 +279,12 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Metodo que seleciona as lojas dentro do controlador do cliente
+     * 
+     * 
+     * @param event
+     */
     @FXML
     private void selectLoja(Event event) {
         try {
@@ -250,6 +302,11 @@ public class ClienteController {
         }
     }
 
+    /**
+     *  Metodo que carrega os dados do cliente
+     * 
+     * @param event
+     */
     @FXML
     private void loadCliente(Event event) {
         nomeField.setText(cliente.getNome());
@@ -260,6 +317,11 @@ public class ClienteController {
         enderecoField.setText(cliente.getEndereco());
     }
 
+    /**
+     * Metodo que atualiza os dados do cliente
+     * 
+     * @param event
+     */
     @FXML
     private void updateCliente(ActionEvent event) {
         try {
@@ -281,6 +343,11 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Metodo que desloga o cliente
+     * 
+     * @param event
+     */
     @FXML
     private void logout(ActionEvent event) {
         try {
@@ -295,6 +362,11 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Metodo que inicia e gerencia os argumentos
+     * 
+     * @param event
+     */
     @FXML
     private void startAgendamentos(Event event) {
         veiculoAgendamento.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, String>("veiculo"));
@@ -305,6 +377,10 @@ public class ClienteController {
         loadAgendamentos();
     }
 
+    /**
+     * Metodos que carregam os agendamentos
+     * 
+     */
     private void loadAgendamentos(){
         try{
             for (Agendamento a : App.agendamentoRepository.loadAllFromClienteId(cliente.getId())) {
@@ -321,6 +397,10 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Metodo que limpa os agendamentos
+     * 
+     */
     private void clear(){
         idField.clear();
         placaField.clear();
@@ -331,6 +411,11 @@ public class ClienteController {
         apelidoField.clear();
     }
 
+    /**
+     * Metodo de validação dos dados do veiculo
+     * 
+     * @return
+     */
     private Boolean validaAdicao(){
         if (apelidoField.getText().isEmpty() || placaField.getText().isEmpty() || marcaField.getText().isEmpty() || modeloField.getText().isEmpty() || corField.getText().isEmpty() || tipoField.getValue() == null) {
             valoresVazios.setVisible(true);
@@ -375,6 +460,11 @@ public class ClienteController {
         return true;
     }
 
+    /**
+     * Metodo de validação da atualização dos dados do veiculo
+     * 
+     * @return
+     */
     private Boolean validaAtualizacaoVeiculo(){
         if (apelidoField.getText().isEmpty() || placaField.getText().isEmpty() || marcaField.getText().isEmpty() || modeloField.getText().isEmpty() || corField.getText().isEmpty() || tipoField.getValue() == null) {
             valoresVazios.setVisible(true);
@@ -419,6 +509,11 @@ public class ClienteController {
         return true;
     }
 
+    /**
+     * Metodo que valida atualização de dados do cliente
+     * 
+     * @return
+     */
     private Boolean validaAtualizacaoCliente(){
         if (nomeField.getText().isEmpty() || usuarioField.getText().isEmpty() || cpfField.getText().isEmpty() || telefoneField.getText().isEmpty() || senhaField.getText().isEmpty() || enderecoField.getText().isEmpty()) {
             erroCliente.setText("Preencha todos os campos");

@@ -1,3 +1,9 @@
+/**
+ * Metodos que controla a janela de registro de clientes 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import javafx.event.ActionEvent;
@@ -29,9 +35,10 @@ public class registroClientesController
     Label concluido;
     
     /**
+     * Botao de registrar o cliente
+     * 
      * @param event
      */
-    
     @FXML
     private void registerClienteButton(ActionEvent event) {
         try{   
@@ -48,6 +55,11 @@ public class registroClientesController
         }
     }
 
+    /**
+     * Botao de voltar ao menu anterior
+     * 
+     * @param event
+     */
     @FXML
     private void voltarButton(ActionEvent event) {
         try{

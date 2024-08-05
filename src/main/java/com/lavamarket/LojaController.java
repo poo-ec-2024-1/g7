@@ -1,3 +1,9 @@
+/**
+ * Classe Controladora da janela loja 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import java.util.ArrayList;
@@ -122,6 +128,11 @@ public class LojaController  {
 
     private Loja loja;
 
+    /**
+     * Construtor da classe loja
+     * 
+     * @param loja
+     */
     public LojaController(Loja loja) {
         this.loja = loja;
     }
@@ -134,6 +145,11 @@ public class LojaController  {
 
     ObservableList<ServicoModel> servicosObs;
 
+    /**
+     * Metodo inicializador da classe da loja
+     * 
+     * @param event
+     */
     @FXML
     private void startFuncionarios(Event event) {
         id.setCellValueFactory(new PropertyValueFactory<FuncionarioModel, Integer>("id"));
@@ -145,6 +161,11 @@ public class LojaController  {
         loadFuncionarios();
     }
 
+    /**
+     * Metodo que adiciona funcionarios na loja
+     * 
+     * @param event
+     */
     @FXML
     private void adicionarFuncionario(ActionEvent event) {
         try {
@@ -159,6 +180,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodos que removem funcionarios da classe
+     * 
+     * @param event
+     */
     @FXML
     private void removeFuncionario(ActionEvent event) {
         try {
@@ -170,6 +196,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo que atualiza os funcionarios de uma loja
+     * 
+     * @param event
+     */
     @FXML
     private void updateFuncionario(ActionEvent event) {
         try {
@@ -187,6 +218,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo que seleciona os funcionarios de uma loja
+     * 
+     * @param event
+     */
     @FXML
     private void selectFuncionario(Event event) {
         try {
@@ -203,6 +239,10 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo que carrega todos os funcionario da loja
+     * 
+     */
     private void loadFuncionarios(){
         try{
             for (Funcionario f : App.funcionarioRepository.loadAllFromLojaId(loja.getId())) {
@@ -217,6 +257,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo que inicializam os serviços
+     * 
+     * @param event
+     */
     @FXML
     private void startServicos(Event event) {
         nomePacote.setCellValueFactory(new PropertyValueFactory<ServicoModel, String>("nomePacote"));
@@ -226,6 +271,11 @@ public class LojaController  {
         loadServicos();
     }
 
+    /**
+     * Metodo que adiciona os serviçoes na loja
+     * 
+     * @param event
+     */
     @FXML
     private void adicionarServico(ActionEvent event) {
         try {
@@ -240,6 +290,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo que remove serviçoes da classe
+     * 
+     * @param event
+     */
     @FXML
     private void removeServico(ActionEvent event) {
         try {
@@ -251,6 +306,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo de atualizar seviços da loja
+     * 
+     * @param event
+     */
     @FXML
     private void updateServico(ActionEvent event) {
         try {
@@ -276,6 +336,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * metodo de selecionar os serviçoes da loja
+     * 
+     * @param event
+     */
     @FXML
     private void selectServico(Event event) {
         try {
@@ -298,6 +363,10 @@ public class LojaController  {
         }
     }
 
+    /**
+     * metodo de carregar serviçoes da loja
+     * 
+     */
     private void loadServicos(){
         try{
             for (Servico s : App.servicoRepository.loadAllFromLojaId(loja.getId())) {
@@ -312,6 +381,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo que atualiza informações da loja
+     * 
+     * @param event
+     */
     @FXML
     private void updateLoja(ActionEvent event) {
         try {
@@ -328,6 +402,11 @@ public class LojaController  {
         }
     }
 
+
+    /**
+     * metodo que carrega a loja 
+     * 
+     */
     @FXML
     private void loadLoja(){
         try {
@@ -341,6 +420,11 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo que faz o log out de uma loja
+     * 
+     * @param event
+     */
     @FXML
     private void logout(ActionEvent event) {
         try {
@@ -355,6 +439,10 @@ public class LojaController  {
         }
     }
 
+    /**
+     * Metodo que limpa todos os serviçoes de uma loja
+     * 
+     */
     private void clearServicos(){
         servicoIDField.clear();
         nomeServicoField.clear();
@@ -371,6 +459,10 @@ public class LojaController  {
         atualizarServicoButton.setDisable(true);
     }
 
+    /**
+     * Metodo que remove todos os funcionario de uma loja
+     * 
+     */
     private void clearFuncionarios(){
         idField.clear();
         nomeField.clear();
@@ -381,6 +473,11 @@ public class LojaController  {
         atualizarFuncionarioButton.setDisable(true);
     }
 
+    /**
+     * Metodos que validam a adicao de um funcionario
+     * 
+     * @return
+     */
     private Boolean validaAdicaoFuncionario(){
         if (nomeField.getText().isEmpty() || cpfField.getText().isEmpty() || telefoneField.getText().isEmpty() || enderecoField.getText().isEmpty() || salarioField.getText().isEmpty()) {
             valoresNulos.setVisible(true);
@@ -424,6 +521,11 @@ public class LojaController  {
         return true;
     }
 
+    /**
+     * Metodo que valida a adição de serviços
+     * 
+     * @return
+     */
     private Boolean validaServicoAdiciona(){
         if (nomeServicoField.getText().isEmpty() || valorCarro.getText().isEmpty() || valorMoto.getText().isEmpty() || valorCaminhao.getText().isEmpty()) {
             valoresNulosServicos.setVisible(true);
@@ -469,6 +571,12 @@ public class LojaController  {
         }
         return true;
     }
+
+    /**
+     * Metodo que valida a ataulização de serviços
+     * 
+     * @return
+     */
     public Boolean validaSericoUpdate(){
         if (nomeServicoField.getText().isEmpty() || valorCarro.getText().isEmpty() || valorMoto.getText().isEmpty() || valorCaminhao.getText().isEmpty()) {
             valoresNulosServicos.setVisible(true);
@@ -506,6 +614,11 @@ public class LojaController  {
         return true;
     }
 
+    /**
+     * Metodo que valida a atualização da loja
+     * 
+     * @return
+     */
     private Boolean validaAtualizaçãoLoja(){
         if (nomeEmpresaField.getText().isEmpty() || cnpjField.getText().isEmpty() || usuarioField.getText().isEmpty() || senhaField.getText().isEmpty() || enderecoEmpresaField.getText().isEmpty()) {
             erroEmpresa.setText("Preencha todos os campos");

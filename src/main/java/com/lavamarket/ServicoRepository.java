@@ -1,4 +1,11 @@
-package com.lavamarket;
+/**
+ * Classe Que controla o banco de dados de serviços 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
+
+ package com.lavamarket;
 
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.Dao;
@@ -9,18 +16,26 @@ import java.util.ArrayList;
 
 public class ServicoRepository
 {
-    private static Database database;
     private static Dao<Servico, Integer> dao;
     private List<Servico> loadedServicos;
     private Servico loadedServico; 
     
+    /**
+     * Metodo construtor da classe de serviços
+     * 
+     * @param database
+     */
     public ServicoRepository(Database database) {
         ServicoRepository.setDatabase(database);
         loadedServicos = new ArrayList<Servico>();
     }
     
+    /**
+     * Metodo que altera o banco de dados dos serviços
+     * 
+     * @param database
+     */
     public static void setDatabase(Database database) {
-        ServicoRepository.database = database;
         try {
             dao = DaoManager.createDao(database.getConnection(), Servico.class);
             TableUtils.createTableIfNotExists(database.getConnection(), Servico.class);
@@ -30,6 +45,12 @@ public class ServicoRepository
         }            
     }
     
+    /**
+     * Metodo que cria o banco de dados dos serviços
+     * 
+     * @param veiculo
+     * @return
+     */
     public Servico create(Servico veiculo) {
         int nrows = 0;
         try {
@@ -44,6 +65,11 @@ public class ServicoRepository
         return veiculo;
     }    
 
+    /**
+     * Metodo que atualiza o banco de dados de veiculos
+     * 
+     * @param veiculo
+     */
     public void update(Servico veiculo) {
         try {
             dao.update(veiculo);
@@ -52,6 +78,11 @@ public class ServicoRepository
         }
     }
 
+    /**
+     * Metodo que deleta serviços
+     * 
+     * @param veiculo
+     */
     public void delete(Servico veiculo) {
         try{
             dao.delete(veiculo);
@@ -60,6 +91,12 @@ public class ServicoRepository
         }
     }
     
+    /**
+     * Metodo que carrega serviços pelo id
+     * 
+     * @param id
+     * @return
+     */
     public Servico loadFromId(int id) {
         try {
             this.loadedServico = dao.queryForId(id);
@@ -71,6 +108,12 @@ public class ServicoRepository
         return this.loadedServico;
     }
     
+    /**
+     * Metodo que carrega serviçoes pelo usuario
+     * 
+     * @param usuario
+     * @return
+     */
     public Servico loadFromUsuario(String usuario) {
         try {
             this.loadedServico = dao.queryForEq("usuario", usuario).get(0);
@@ -82,6 +125,12 @@ public class ServicoRepository
         return this.loadedServico;
     }
     
+    /**
+     * Metodo que retorna tudo pelo id da loja
+     * 
+     * @param id
+     * @return
+     */
     public List<Servico> loadAllFromLojaId(int id){
         try {
             this.loadedServicos = dao.queryForEq("lavajato_id", id);
@@ -93,6 +142,11 @@ public class ServicoRepository
         return this.loadedServicos;
     }
     
+    /**
+     * Metodo que carrega todos os dados do banco de dados dos serviços
+     * 
+     * @return
+     */
     public List<Servico> loadAll() {
         try {
             this.loadedServicos =  dao.queryForAll();

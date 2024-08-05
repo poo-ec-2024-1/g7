@@ -1,5 +1,10 @@
+/**
+ * Classe EM CONSTRUÇÂO 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
-
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -136,6 +141,7 @@ public class selectedAgendamentoController implements Initializable {
         }
     }
 
+    // Precisa consertar!!
     public Boolean validaReview(){
         if (App.reviewRepository.loadFromId(agendamento.getIdLoja()) == null){
             return true;

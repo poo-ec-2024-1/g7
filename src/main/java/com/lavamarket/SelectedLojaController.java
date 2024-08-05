@@ -1,3 +1,9 @@
+/**
+ * Classe que controla a janela da loja selecionada 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 
@@ -74,6 +80,12 @@ public class SelectedLojaController implements Initializable {
     private Loja loja;
     private Cliente cliente;
 
+    /**
+     * Metodo criador da classe selected loja controller
+     * 
+     * @param cliente
+     * @param loja
+     */
     public SelectedLojaController(Cliente cliente, Loja loja) {
         this.cliente = cliente;
         this.loja = loja;
@@ -85,6 +97,12 @@ public class SelectedLojaController implements Initializable {
     List<String> veiculosApelidos = new ArrayList<>();
     ObservableList<String> veiculosApelidosObs;
 
+    /**
+     * Classe que sobreescreve e inicializa a janela
+     * 
+     * @param resources
+     * @param location
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nomeColumn.setCellValueFactory(new PropertyValueFactory<ServicoModel, String>("nomePacote"));
@@ -96,6 +114,11 @@ public class SelectedLojaController implements Initializable {
         loadServicos();
     }
 
+    /**
+     * Metodo que configura a caixa de seleção
+     * 
+     * @param event
+     */
     private void setChoicebox(ActionEvent event){
         try{
             if (veiculo.getItems().isEmpty()){
@@ -112,6 +135,11 @@ public class SelectedLojaController implements Initializable {
     }
 
 
+    /**
+     * Metodo que altera o preço do serviço
+     * 
+     * @return
+     */
     private float setPreco(){
         if (veiculo.getValue() == null){
             return -1;
@@ -131,6 +159,10 @@ public class SelectedLojaController implements Initializable {
         return -1;
     }
 
+    /**
+     * Metodo que carrega os serviços
+     * 
+     */
     private void loadServicos(){
         try{
             for (Servico servico : App.servicoRepository.loadAllFromLojaId(loja.getId())) {
@@ -146,6 +178,11 @@ public class SelectedLojaController implements Initializable {
             System.out.printf("ERRO NA CLASSE SelectedLojaController durante o carregamento dos serviços: ",e.getMessage());
         }
     }
+
+    /**
+     * Metodo de seleção de serviços
+     * 
+     */
     @FXML
     private void selectServico(){
         try{
@@ -164,6 +201,10 @@ public class SelectedLojaController implements Initializable {
         }
     }
 
+    /**
+     * Metodo de agendamento e data
+     * 
+     */
     @FXML
     private void dataAgendamento(){
             LocalDate data = dataAgendamento.getValue();
@@ -171,6 +212,10 @@ public class SelectedLojaController implements Initializable {
             dataAgendamento.setPromptText(dataFormatada);
     }
 
+    /**
+     * Metodo que agenta o serviço
+     * 
+     */
     @FXML
     private void agendar(){
         try{
@@ -187,6 +232,11 @@ public class SelectedLojaController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que valida o agendamento
+     * 
+     * @return
+     */
     private Boolean validaAgendamento(){
         if (idField.getText().isEmpty()){
             servicoError.setVisible(true);

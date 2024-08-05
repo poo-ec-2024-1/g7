@@ -1,3 +1,9 @@
+/**
+ * Classe App que inicia a aplicação software
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 
@@ -9,6 +15,11 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     
+    /**
+     * Classe sobreescrita que inicia o app, e inicia a tela incial de login
+     * 
+     * @param primaryStage 
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
@@ -18,6 +29,7 @@ public class App extends Application {
         primaryStage.show();
     }
     
+    // Inicializadores dos bancos de dados a serem ultilizados pelo programa
     static Database db = new Database("Database.db");
     static ClienteRepository clienteRepository = new ClienteRepository(db);
     static LojaRepository lojaRepository = new LojaRepository(db);
@@ -27,20 +39,12 @@ public class App extends Application {
     static ReviewRepository reviewRepository = new ReviewRepository(db);
     static AgendamentoRepository agendamentoRepository = new AgendamentoRepository(db);
     
-    public static void print(String s)
-    {
-        System.out.println(s);
-    }
-    public static void print(String d,String s)
-    {
-        System.out.println(d + s);
-    }
-    public static void print(Object a)
-    {
-        System.out.println(a);
-    }
-    
-    
+    /**
+     * Metodo principal da aplicação 
+     * 
+     * @param args
+     * @throws Exception
+     */    
     public static void main(String[] args) throws Exception {
         launch(args);
     }

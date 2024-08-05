@@ -1,3 +1,9 @@
+/**
+ * Classe que gerencia o controller da janela registro de lojas
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import javafx.event.ActionEvent;
@@ -26,6 +32,8 @@ public class RegistroLojasController
 
 
     /**
+     * Botao de registrar lojas
+     * 
      * @param event
      */
     @FXML
@@ -43,6 +51,11 @@ public class RegistroLojasController
         }
     }
     
+    /**
+     * Botao de voltar ao menu anterior
+     * 
+     * @param event
+     */
     @FXML
     private void voltarButton(ActionEvent event) {
         try{

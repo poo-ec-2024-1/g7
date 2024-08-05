@@ -1,3 +1,9 @@
+/**
+ * Classe que guarda as avaliações 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import com.j256.ormlite.dao.DaoManager;
@@ -13,11 +19,21 @@ public class ReviewRepository
     private List<Review> loadedReviews;
     private Review loadedReview; 
     
+    /**
+     * Construtor da classe
+     * 
+     * @param database
+     */
     public ReviewRepository(Database database) {
         ReviewRepository.setDatabase(database);
         loadedReviews = new ArrayList<Review>();
     }
     
+    /**
+     * Metodo que altera o banco de dados
+     * 
+     * @param database
+     */
     public static void setDatabase(Database database) {
         try {
             dao = DaoManager.createDao(database.getConnection(), Review.class);
@@ -28,6 +44,12 @@ public class ReviewRepository
         }            
     }
     
+    /**
+     * Metodo que cria o banco de dados
+     * 
+     * @param funcionario
+     * @return
+     */
     public Review create(Review funcionario) {
         int nrows = 0;
         try {
@@ -42,6 +64,11 @@ public class ReviewRepository
         return funcionario;
     }    
 
+    /**
+     * Metodo que atualiza o banco de dados
+     * 
+     * @param funcionario
+     */
     public void update(Review funcionario) {
         try {
             dao.update(funcionario);
@@ -50,6 +77,11 @@ public class ReviewRepository
         }
     }
 
+    /**
+     * Metodo que deleta informações do banco de dados da avaliações
+     * 
+     * @param funcionario
+     */
     public void delete(Review funcionario) {
         try{
             dao.delete(funcionario);
@@ -58,6 +90,12 @@ public class ReviewRepository
         }
     }
     
+    /**
+     * Metodo que carrega as informações com base no id
+     * 
+     * @param id
+     * @return
+     */
     public Review loadFromId(int id) {
         try {
             this.loadedReview = dao.queryForId(id);
@@ -69,6 +107,12 @@ public class ReviewRepository
         return this.loadedReview;
     }
     
+    /**
+     * Metodo que carrega as informações da avaliação com base no usuario
+     * 
+     * @param usuario
+     * @return
+     */
     public Review loadFromUsuario(String usuario) {
         try {
             this.loadedReview = dao.queryForEq("usuario", usuario).get(0);
@@ -80,6 +124,12 @@ public class ReviewRepository
         return this.loadedReview;
     }
     
+    /**
+     * Metodo que carrega as avaliações pelo id da loja
+     * 
+     * @param id
+     * @return
+     */
     public List<Review> loadAllFromLojaId(int id){
         try {
             this.loadedReviews = dao.queryForEq("lavajato_id", id);
@@ -91,6 +141,11 @@ public class ReviewRepository
         return this.loadedReviews;
     }
     
+    /**
+     * Metodo que carrega todas as informações
+     * 
+     * @return
+     */
     public List<Review> loadAll() {
         try {
             this.loadedReviews =  dao.queryForAll();

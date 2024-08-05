@@ -1,3 +1,9 @@
+/**
+ * Classe Controladora da janela de agendamento da loja 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 
@@ -49,13 +55,27 @@ public class selectedAgendamentoLojaController implements Initializable {
     private Agendamento agendamento;
 
     String servicos = "";
-
+    
+    /**
+     * Metodo construtor da classe
+     * 
+     * @param cliente
+     * @param loja
+     * @param agendamento
+     */
     public selectedAgendamentoLojaController(Cliente cliente, Loja loja, Agendamento agendamento){
         this.cliente = cliente;
         this.loja = loja;
         this.agendamento = agendamento;
     }
+
     @Override
+    /**
+     * Metodo de inicialização do repositorio de agendamentos
+     * 
+     * @param location
+     * @param resources
+     */
     public void initialize(URL location, ResourceBundle resources) {
         nomeCliente.setText(App.lojaRepository.loadFromId(agendamento.getIdLoja()).getNome());
         cpfCliente.setText(App.lojaRepository.loadFromId(agendamento.getIdLoja()).getEndereco());
@@ -93,6 +113,11 @@ public class selectedAgendamentoLojaController implements Initializable {
         dataAgendamento.setText(d.format(agendamento.getData()));
     }
 
+    /**
+     * Metodo que retorna ao menu anterior a o dos agendamentos da loja
+     * 
+     * @param event
+     */
     @FXML
     public void voltar(Event event) {
         try{
@@ -109,6 +134,11 @@ public class selectedAgendamentoLojaController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que finaliza os agendamentos
+     * 
+     * @param event
+     */
     @FXML
     public void finalizarAgendamento(Event event) {
         try{

@@ -1,3 +1,9 @@
+/**
+ * Classe Loja que possui os atributos das lojas 
+ * 
+ * @author Maryxlu, Erick_Fleury, Raingredi
+ * @version 0.0.1
+ */
 package com.lavamarket;
 
 import com.j256.ormlite.field.DatabaseField;
@@ -37,6 +43,15 @@ public class Loja {
     @DatabaseField
     private int review = 0;
 
+    /**
+     * Metodo construtor da loja 
+     * 
+     * @param nome
+     * @param usuario
+     * @param senha
+     * @param cnpj
+     * @param endereco
+     */
     public Loja(String nome, String usuario, String senha, String cnpj, String endereco) {
         this.nome = nome;
         this.cnpj = cnpj;
@@ -44,6 +59,11 @@ public class Loja {
         this.usuario = usuario;
         this.senha = senha;
     }
+    
+    /**
+     * Metodo construtor padrão da loja
+     * 
+     */
     public Loja(){
         this.nome = "";
         this.cnpj = "";
@@ -52,33 +72,92 @@ public class Loja {
         this.senha = "";
     }
 
+    /**
+     * Getter do nome da loja
+     * 
+     * @return
+     */
     public String getNome() {
         return nome;
     }
+
+    /**
+     * Setter do nome da loja
+     * 
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    /**
+     * Getter do usuario
+     * 
+     * @return
+     */
     public String getUsuario(){
         return usuario;
     }
+
+    /**
+     * setter do Usuario
+     * 
+     * @param usuario
+     */
     public void setUsuario(String usuario){
         this.usuario = usuario;
     }
+
+    /**
+     * Getter da senhas
+     * 
+     * @return
+     */
     public String getSenha(){
         return senha;
     }
+
+    /**
+     * setter da senha
+     * 
+     * @param senha
+     */
     public void setSenha(String senha){
         this.senha = senha;
     }
+
+    /**
+     * Getter do cnpj da loja
+     * 
+     * @return
+     */
     public String getCnpj() {
         return cnpj;
     }
+
+    /**
+     * Setter do cnpj da loja
+     * 
+     * @param cnpj
+     */
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
+    /**
+     * Setter do precomedioCarro
+     * 
+     * @param precomedioCarro
+     */
     public void setPrecomedioCarro(int precomedioCarro) {
         this.precomedioCarro = precomedioCarro;
     }
+
+    /**
+     * Getter do precomediocarro
+     * 
+     * @return
+     */
     public int getPrecomedioCarro() {
         int contagem = 0;
         for (Servico s : App.servicoRepository.loadAllFromLojaId(this.id)) {
@@ -90,6 +169,12 @@ public class Loja {
         }
         return this.precomedioCarro/contagem;
     }
+
+    /**
+     * getter do precomedio da moto
+     * 
+     * @return
+     */
     public int getPrecomedioMoto() {
         int contagem = 0;
         for (Servico s : App.servicoRepository.loadAllFromLojaId(this.id)) {
@@ -101,6 +186,12 @@ public class Loja {
         }
         return this.precomedioMoto/contagem;
     }
+
+    /**
+     * Getter do precomedio de caminhoes
+     * 
+     * @return
+     */
     public int getPrecomedioCaminhao() {
         int contagem = 0;
         for (Servico s : App.servicoRepository.loadAllFromLojaId(this.id)) {
@@ -112,15 +203,39 @@ public class Loja {
         }
         return this.precomedioCaminhao/contagem;
     }
+
+    /**
+     * Getter do endereço
+     * 
+     * @return
+     */
     public String getEndereco() {
         return endereco;
     }
+
+    /**
+     * Setter do endereço da loja
+     * 
+     * @param endereco
+     */
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    /**
+     * Getter do id da loja
+     * 
+     * @return
+     */
     public int getId() {
         return id;
     }
+
+    /**
+     * Getter da avaliação da loja
+     * 
+     * @return
+     */
     public float getReview() {
         App.reviewRepository.loadAllFromLojaId(this.id);
         int contagem = 0;
