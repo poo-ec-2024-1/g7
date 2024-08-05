@@ -107,7 +107,7 @@ public class SelectedLojaController implements Initializable {
             }  
             setPreco();
         }catch(Exception e){
-            App.print("ERRO NA CLASSE SelectedLojaController durante a inicialização: ",e.getMessage());
+            System.out.printf("ERRO NA CLASSE SelectedLojaController durante a inicialização: ",e.getMessage());
         }
     }
 
@@ -143,7 +143,7 @@ public class SelectedLojaController implements Initializable {
                 servicos.clear();
             }
         }catch(NullPointerException e){
-            App.print("ERRO NA CLASSE SelectedLojaController durante o carregamento dos serviços: ",e.getMessage());
+            System.out.printf("ERRO NA CLASSE SelectedLojaController durante o carregamento dos serviços: ",e.getMessage());
         }
     }
     @FXML
@@ -160,7 +160,7 @@ public class SelectedLojaController implements Initializable {
             idField.setText(String.valueOf(servico.getId()));
             setPreco();
         }catch(NullPointerException e){
-            App.print("ERRO NA CLASSE SelectedLojaController durante a seleção do serviço: ",e.getMessage());
+            System.out.printf("ERRO NA CLASSE SelectedLojaController durante a seleção do serviço: ",e.getMessage());
         }
     }
 
@@ -183,7 +183,7 @@ public class SelectedLojaController implements Initializable {
                 botaoAgendamento.setText("Agendamento realizado com sucesso");
             }
         }catch(NullPointerException e){
-            App.print("ERRO NA CLASSE SelectedLojaController durante o agendamento: ",e.getMessage());
+            System.out.printf("ERRO NA CLASSE SelectedLojaController durante o agendamento: ",e.getMessage());
         }
     }
 
