@@ -63,4 +63,16 @@ public class LoginLojaController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void voltar(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Login/login - tela inicial.fxml"));
+        LoginController controller = new LoginController();
+        loader.setController(controller);
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

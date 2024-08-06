@@ -13,7 +13,7 @@ import java.util.List;
 import com.lavamarket.App;
 import com.lavamarket.Agendamento.Agendamento;
 import com.lavamarket.Agendamento.AgendamentoModel;
-import com.lavamarket.Agendamento.selectedAgendamentoController;
+import com.lavamarket.Agendamento.SelectedAgendamentoController;
 import com.lavamarket.Loja.Loja;
 import com.lavamarket.Loja.LojaModel;
 import com.lavamarket.Loja.SelectedLojaController;
@@ -394,7 +394,7 @@ public class ClienteController {
             Agendamento a = App.agendamentoRepository.loadFromId(tabelaAgendamentos.getSelectionModel().getSelectedItem().getId());
             Loja l = App.lojaRepository.loadFromId(a.getIdLoja());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Agendamento/selectedAgendamento.fxml"));
-            selectedAgendamentoController controller = new selectedAgendamentoController(cliente, l, a);
+            SelectedAgendamentoController controller = new SelectedAgendamentoController(cliente, l, a);
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

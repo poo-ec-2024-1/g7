@@ -27,7 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
-public class selectedAgendamentoController implements Initializable {
+public class SelectedAgendamentoController implements Initializable {
     @FXML
     private Label nomeLavajato;
     @FXML
@@ -64,7 +64,7 @@ public class selectedAgendamentoController implements Initializable {
 
     String servicos = "";
 
-    public selectedAgendamentoController(Cliente cliente, Loja loja, Agendamento agendamento){
+    public SelectedAgendamentoController(Cliente cliente, Loja loja, Agendamento agendamento){
         this.cliente = cliente;
         this.loja = loja;
         this.agendamento = agendamento;

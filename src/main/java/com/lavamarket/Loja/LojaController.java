@@ -191,7 +191,7 @@ public class LojaController  implements Initializable{
             Cliente cliente = App.clienteRepository.loadFromId(a.getIdCliente());
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Loja/selectedAgendamentoLoja.fxml"));
-            selectedAgendamentoLojaController controller = new selectedAgendamentoLojaController(cliente, loja, a);
+            SelectedAgendamentoLojaController controller = new SelectedAgendamentoLojaController(cliente, loja, a);
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -40,6 +40,7 @@
             <Label prefHeight="18.0" prefWidth="202.0" text="Usuário" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label prefHeight="18.0" prefWidth="202.0" text="Senha" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="199.0" text="Sua empresa ainda não tem conta?" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" onAction="#voltar" text="&lt;" GridPane.valignment="TOP" />
          </children>
       </GridPane>
    </children>

@@ -9,15 +9,15 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "com.lavamarket.Main",
-            "projectName": "marketplace_lavajato"
+            "projectName": "marketplace_lavajato",
+             "vmArgs": "--module-path \"C:\\Users\\Computador\\Desktop\\java\\javafx-sdk-22.0.1\\lib\" --add-modules javafx.controls,javafx.fxml -Dprism.order=sw"
         },
         {
             "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "com.lavamarket.App",
-            "projectName": "marketplace_lavajato",
-            "vmArgs": "--module-path \"C:\\Users\\Computador\\Desktop\\java\\javafx-sdk-22.0.1\\lib\" --add-modules javafx.controls,javafx.fxml -Dprism.order=sw"
+            "projectName": "marketplace_lavajato"
         }
     ]
 }
