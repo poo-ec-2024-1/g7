@@ -22,7 +22,9 @@
   Maria Luiza Cardoso  
   Raingredi Mendes
   
-## Modelagem inicial
+## Geração de javadoc
+Executar o javadoc.bat dentro de .\target\site\apidocs\
+Foi gerado pelo maven!
 
 ## UML do projeto
 ![image](./imgs/uml.png)
