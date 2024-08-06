@@ -1,0 +1,17 @@
+-classpath
+'C:/Users/aceco/.m2/repository/com/j256/ormlite/ormlite-jdbc/6.1/ormlite-jdbc-6.1.jar;C:/Users/aceco/.m2/repository/com/j256/ormlite/ormlite-core/6.1/ormlite-core-6.1.jar;C:/Users/aceco/.m2/repository/org/openjfx/javafx-fxml/22.0.2/javafx-fxml-22.0.2.pom;C:/Users/aceco/.m2/repository/org/openjfx/javafx-fxml/22.0.2/javafx-fxml-22.0.2-win.jar;C:/Users/aceco/.m2/repository/org/openjfx/javafx-controls/22.0.2/javafx-controls-22.0.2.jar;C:/Users/aceco/.m2/repository/org/openjfx/javafx-controls/22.0.2/javafx-controls-22.0.2-win.jar;C:/Users/aceco/.m2/repository/org/openjfx/javafx-graphics/22.0.2/javafx-graphics-22.0.2.jar;C:/Users/aceco/.m2/repository/org/openjfx/javafx-graphics/22.0.2/javafx-graphics-22.0.2-win.jar;C:/Users/aceco/.m2/repository/org/openjfx/javafx-base/22.0.2/javafx-base-22.0.2.jar;C:/Users/aceco/.m2/repository/org/openjfx/javafx-base/22.0.2/javafx-base-22.0.2-win.jar;C:/Users/aceco/.m2/repository/org/xerial/sqlite-jdbc/3.46.0.0/sqlite-jdbc-3.46.0.0.jar;C:/Users/aceco/.m2/repository/org/slf4j/slf4j-simple/2.0.13/slf4j-simple-2.0.13.jar;C:/Users/aceco/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar'
+-encoding
+'UTF-8'
+-sourcepath
+'C:/Users/aceco/g7/src/main/java'
+-author
+-charset
+'UTF-8'
+-d
+'.\javadoc'
+-doctitle
+'marketplace_lavajato 0.0.1 API'
+-use
+-version
+-windowtitle
+'marketplace_lavajato 0.0.1 API'

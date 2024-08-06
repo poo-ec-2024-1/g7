@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.lavamarket"},{"l":"com.lavamarket.Agendamento"},{"l":"com.lavamarket.Cliente"},{"l":"com.lavamarket.Funcionario"},{"l":"com.lavamarket.Login"},{"l":"com.lavamarket.Loja"},{"l":"com.lavamarket.Review"},{"l":"com.lavamarket.Servico"},{"l":"com.lavamarket.Veiculo"}];updateSearchResults();
