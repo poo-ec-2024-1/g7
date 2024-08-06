@@ -6,7 +6,7 @@
  */
 package com.lavamarket.Loja;
 
-import com.lavamarket.App;
+import com.lavamarket.Main.App;
 import com.lavamarket.Login.LoginLojaController;
 
 import javafx.event.ActionEvent;

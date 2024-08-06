@@ -11,7 +11,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
-import com.lavamarket.App;
+import com.lavamarket.Main.App;
 import com.lavamarket.Agendamento.Agendamento;
 import com.lavamarket.Cliente.Cliente;
 
