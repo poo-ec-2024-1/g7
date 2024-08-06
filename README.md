@@ -32,3 +32,9 @@ Rodar o seguinte script
 
 ## UML do projeto
 ![image](./imgs/uml.png)
+
+## Resolução de possíveis erros
+
+### Boas práticas
+toda vez que modificar algo no pom.xml favor executar no VScode:
+> Java: Clean Java Language Server Workspace
