@@ -76,7 +76,7 @@ public class RegistroClientesController
     private void voltarButton(ActionEvent event) {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Login/login -Cliente.fxml"));
-            LoginController controller = new LoginController();
+            LoginClienteController controller = new LoginClienteController();
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
