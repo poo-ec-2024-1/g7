@@ -6,14 +6,21 @@
  */
 package com.lavamarket.Loja;
 
+import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.lavamarket.App;
+import com.lavamarket.Agendamento.Agendamento;
+import com.lavamarket.Agendamento.AgendamentoModel;
+import com.lavamarket.Cliente.Cliente;
 import com.lavamarket.Funcionario.Funcionario;
 import com.lavamarket.Funcionario.FuncionarioModel;
 import com.lavamarket.Serviço.Servico;
 import com.lavamarket.Serviço.ServicoModel;
+import com.lavamarket.Veiculo.Veiculo;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +28,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,7 +41,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class LojaController  {
+public class LojaController  implements Initializable{
     @FXML
     private TableView<FuncionarioModel> tabelaFuncionarios;
     @FXML
@@ -119,6 +127,17 @@ public class LojaController  {
     private Label erroCheckbox;
 
     @FXML
+    private TableView<AgendamentoModel> tabelaAgendamentos;
+    @FXML
+    private TableColumn<AgendamentoModel, String> nomeCliente;
+    @FXML
+    private TableColumn<AgendamentoModel, String> tipoVeiculo;
+    @FXML
+    private TableColumn<AgendamentoModel, String> placaVeiculo;
+    @FXML
+    private TableColumn<AgendamentoModel, Date> dataAgendamento;
+
+    @FXML
     private TextField nomeEmpresaField;
     @FXML
     private TextField cnpjField;
@@ -150,6 +169,62 @@ public class LojaController  {
     List<ServicoModel> servicos = new ArrayList<>();
 
     ObservableList<ServicoModel> servicosObs;
+
+    List<AgendamentoModel> agendamentos = new ArrayList<>();
+
+    ObservableList<AgendamentoModel> agendamentosObs;
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        nomeCliente.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, String>("nomeCliente"));
+        tipoVeiculo.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, String>("tipoVeiculo"));
+        placaVeiculo.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, String>("placaVeiculo"));
+        dataAgendamento.setCellValueFactory(new PropertyValueFactory<AgendamentoModel, Date>("data"));
+        loadAgendamentos();
+    }
+
+    
+    @FXML
+    private void loadSelectedAgendamento(Event event){
+        try {
+            Agendamento a = App.agendamentoRepository.loadFromId(tabelaAgendamentos.getSelectionModel().getSelectedItem().getId());
+            Cliente cliente = App.clienteRepository.loadFromId(a.getIdCliente());
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Loja/selectedAgendamentoLoja.fxml"));
+            selectedAgendamentoLojaController controller = new selectedAgendamentoLojaController(cliente, loja, a);
+            loader.setController(controller);
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("ERRO AO SELECIONAR AGENDAMENTO: "+e);
+        }
+    }
+
+    /**
+     * Metodo para carregar os agendamentos da loja
+     * 
+     * @param event
+     */
+    @FXML
+    private void loadAgendamentos(){
+        try {
+            for (Agendamento a : App.agendamentoRepository.loadAllFromLojaId(loja.getId())) {
+                Cliente cliente = App.clienteRepository.loadFromId(a.getIdCliente());
+                Veiculo veiculo = App.veiculoRepository.loadFromId(a.getIdVeiculo());
+
+                AgendamentoModel am = new AgendamentoModel(a.getId(), cliente.getNome(), veiculo.getTipo(), veiculo.getPlaca(), a.getData());
+                agendamentos.add(am);
+            }
+            agendamentosObs = FXCollections.observableArrayList(agendamentos);
+            tabelaAgendamentos.setItems(agendamentosObs);
+            agendamentos.clear();
+        } catch (Exception e) {
+            System.out.println("ERRO AO CARREGAR AGENDAMENTOS: "+e);
+        }
+    }
 
     /**
      * Metodo inicializador da classe da loja
@@ -210,15 +285,17 @@ public class LojaController  {
     @FXML
     private void updateFuncionario(ActionEvent event) {
         try {
-            Funcionario f = App.funcionarioRepository.loadFromId(Integer.parseInt(idField.getText()));
-            f.setNome(nomeField.getText());
-            f.setCpf(cpfField.getText());
-            f.setTelefone(telefoneField.getText());
-            f.setEndereco(enderecoField.getText());
-            f.setSalario(Double.parseDouble(salarioField.getText()));
-            App.funcionarioRepository.update(f);
-            loadFuncionarios();
-            clearFuncionarios();
+            if (validaAtualizacaoFuncionario()){
+                Funcionario f = App.funcionarioRepository.loadFromId(Integer.parseInt(idField.getText()));
+                f.setNome(nomeField.getText());
+                f.setCpf(cpfField.getText());
+                f.setTelefone(telefoneField.getText());
+                f.setEndereco(enderecoField.getText());
+                f.setSalario(Double.parseDouble(salarioField.getText()));
+                App.funcionarioRepository.update(f);
+                loadFuncionarios();
+                clearFuncionarios();
+            }
         } catch (Exception e) {
             System.out.println("ERRO AO ATUALIZAR FUNCIONARIO: "+e);
         }
@@ -434,7 +511,7 @@ public class LojaController  {
     @FXML
     private void logout(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Login/login - tela inicial.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -650,6 +727,76 @@ public class LojaController  {
                 return false;
             }
         }
+        if (cnpjField.getText().length() != 14) {
+            erroEmpresa.setText("CNPJ inválido");
+            erroEmpresa.setTextFill(javafx.scene.paint.Color.RED);
+            erroEmpresa.setVisible(true);
+            return false;
+        }else {
+            erroEmpresa.setVisible(false);
+        }
+        if (usuarioField.getText().length() < 6) {
+            erroEmpresa.setText("Usuário deve ter no mínimo 6 caracteres");
+            erroEmpresa.setTextFill(javafx.scene.paint.Color.RED);
+            erroEmpresa.setVisible(true);
+            return false;
+        }else {
+            erroEmpresa.setVisible(false);
+        }
+        if (senhaField.getText().length() < 6) {
+            erroEmpresa.setText("Senha deve ter no mínimo 6 caracteres");
+            erroEmpresa.setTextFill(javafx.scene.paint.Color.RED);
+            erroEmpresa.setVisible(true);
+            return false;
+        }else {
+            erroEmpresa.setVisible(false);
+        }
+        return true;
+    }
+
+    private Boolean validaAtualizacaoFuncionario(){
+        if (nomeField.getText().isEmpty() || cpfField.getText().isEmpty() || telefoneField.getText().isEmpty() || enderecoField.getText().isEmpty() || salarioField.getText().isEmpty()) {
+            valoresNulos.setVisible(true);
+            return false;
+        }else {
+            valoresNulos.setVisible(false);
+        }
+        for (Funcionario f : App.funcionarioRepository.loadAllFromLojaId(loja.getId())) {
+            if (f.getCpf().equals(cpfField.getText()) && f.getId() != Integer.parseInt(idField.getText())) {
+                cpfErro.setText("CPF já cadastrado");
+                cpfErro.setTextFill(javafx.scene.paint.Color.RED);
+                cpfErro.setVisible(true);
+                return false;
+            }else {
+                cpfErro.setVisible(false);
+            }
+        }
+        if (cpfField.getText().length() != 11) {
+            cpfErro.setText("CPF inválido");
+            cpfErro.setTextFill(javafx.scene.paint.Color.CRIMSON);
+            cpfErro.setVisible(true);
+            return false;
+        } else {
+            cpfErro.setVisible(false);
+        }
+        if (telefoneField.getText().length() != 11) {
+            telefoneErro.setText("Telefone inválido");
+            telefoneErro.setTextFill(javafx.scene.paint.Color.CRIMSON);
+            telefoneErro.setVisible(true);
+            return false;
+        } else{
+            telefoneErro.setVisible(false);
+        }
+        try {
+            Double.parseDouble(salarioField.getText());
+            erro.setVisible(false);
+        } catch (NumberFormatException e) {
+            erro.setVisible(true);
+            return false;
+        }
+        cpfErro.setVisible(false);
+        erro.setVisible(false);
+        telefoneErro.setVisible(false);
         return true;
     }
 }

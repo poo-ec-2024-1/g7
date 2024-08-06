@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0">
+      <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,7 +32,7 @@
             </Label>
             <Label fx:id="nomeCliente" text="=================" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label text="Veículo" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -43,7 +42,7 @@
             </Label>
             <Label fx:id="apelidoVeiculo" text="=================" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label text="Serviço" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -53,45 +52,45 @@
             </Label>
             <Label fx:id="nomePacoteServicos" text="=================" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label fx:id="cpfCliente" text="=================" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label fx:id="placaVeiculo" text="=================" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label fx:id="servicosSelecionados" text="=================" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label fx:id="modeloVeiculo" text="=================" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label fx:id="valorServicos" text="=================" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label fx:id="corVeiculo" text="=================" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label fx:id="dataAgendamento" text="=================" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
-                  <Font size="10.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" text="Finaizar serviço" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#finalizarAgendamento" text="Finalizar serviço" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#voltar" text="Voltar" textAlignment="CENTER" GridPane.valignment="BASELINE" />
          </children>
       </GridPane>

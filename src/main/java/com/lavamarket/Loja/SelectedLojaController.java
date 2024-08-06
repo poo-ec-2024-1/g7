@@ -15,11 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.Action;
-
 import com.lavamarket.App;
 import com.lavamarket.Agendamento.Agendamento;
 import com.lavamarket.Cliente.Cliente;
+import com.lavamarket.Cliente.ClienteController;
 import com.lavamarket.Serviço.Servico;
 import com.lavamarket.Serviço.ServicoModel;
 import com.lavamarket.Veiculo.Veiculo;
@@ -27,9 +26,12 @@ import com.lavamarket.Veiculo.Veiculo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -40,6 +42,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class SelectedLojaController implements Initializable {
     @FXML
@@ -236,6 +239,22 @@ public class SelectedLojaController implements Initializable {
             }
         }catch(NullPointerException e){
             System.out.printf("ERRO NA CLASSE SelectedLojaController durante o agendamento: ",e.getMessage());
+        }
+    }
+
+    @FXML
+    private void voltar(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Cliente/clientes.fxml"));
+            ClienteController controller = new ClienteController(cliente);
+            loader.setController(controller);
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }catch(Exception e){
+            System.out.println("ERRO NA CLASSE SelectedLojaController durante o retorno: "+e);
         }
     }
 

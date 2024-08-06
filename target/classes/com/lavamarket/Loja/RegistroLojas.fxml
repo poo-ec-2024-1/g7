@@ -4,28 +4,44 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lavamarket.RegistroLojasController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="nome" layoutX="44.0" layoutY="104.0" prefHeight="44.0" prefWidth="262.0" promptText="Nome da empresa" AnchorPane.bottomAnchor="252.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="294.4" AnchorPane.topAnchor="104.0" />
-      <TextField fx:id="senha" layoutX="339.0" layoutY="207.0" prefHeight="43.0" prefWidth="201.0" promptText="Senha" AnchorPane.bottomAnchor="149.79999999999998" AnchorPane.leftAnchor="339.0" AnchorPane.rightAnchor="60.200000000000045" AnchorPane.topAnchor="207.0" />
-      <TextField fx:id="usuario" layoutX="44.0" layoutY="207.0" prefHeight="42.0" prefWidth="262.0" promptText="Usuario" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="207.0" />
-      <TextField fx:id="cnpj" layoutX="340.0" layoutY="103.0" prefHeight="45.0" prefWidth="201.0" promptText="CNPJ" AnchorPane.bottomAnchor="252.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="103.0" />
-      <TextField fx:id="endereco" layoutX="43.0" layoutY="296.0" prefHeight="44.0" prefWidth="263.0" promptText="Endereço" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="294.6" AnchorPane.topAnchor="296.0" />
-      <Button fx:id="registerButton" layoutX="415.0" layoutY="300.0" mnemonicParsing="false" onAction="#registerLojaButton" text="Registrar" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="415.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="300.0" />
-      <Label fx:id="erro" layoutY="343.2" prefHeight="40.0" prefWidth="270.0" text="Todos os valores devem ser devidamente inseridos" textFill="RED" visible="false" wrapText="true" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="290.0" AnchorPane.topAnchor="343.0" />
-      <Button mnemonicParsing="false" onAction="#voltarButton" text="&lt;" AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="10.0" />
-      <Label fx:id="concluido" layoutY="340.8" prefHeight="30.0" prefWidth="210.0" text="Registro concluido!" textFill="#0aff00" visible="false" wrapText="true" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="341.0" />
-      <Label layoutX="51.0" layoutY="78.0" text="Nome da empresa" />
-      <Label layoutX="345.0" layoutY="78.0" text="CNPJ" />
-      <Label layoutX="50.0" layoutY="181.0" text="Usuário" />
-      <Label layoutX="343.0" layoutY="181.0" text="Senha" />
-      <Label layoutX="51.0" layoutY="270.0" text="Endereço" />
-      <Label layoutX="204.0" layoutY="27.0" text="Cadastro para empresas" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
+      <GridPane layoutX="200.0" layoutY="155.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Usuario" textAlignment="CENTER" GridPane.valignment="BASELINE" />
+            <Label text="Senha" GridPane.columnIndex="1" GridPane.valignment="BASELINE" />
+            <Label text="CNPJ" GridPane.rowIndex="1" GridPane.valignment="BASELINE" />
+            <Label text="Nome da empresa" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BASELINE" />
+            <Label text="Endereço" GridPane.rowIndex="2" GridPane.valignment="BASELINE" />
+            <TextField fx:id="usuario" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Usuario" />
+            <TextField fx:id="senha" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Senha" GridPane.columnIndex="1" />
+            <TextField fx:id="cnpj" maxHeight="-Infinity" maxWidth="-Infinity" promptText="CNPJ" GridPane.rowIndex="1" />
+            <TextField fx:id="nome" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Nome da empresa" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="endereco" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Endereço" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#registerButton" text="Registrar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="erro" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#voltarButton" prefHeight="40.0" prefWidth="40.0" text="&lt;" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

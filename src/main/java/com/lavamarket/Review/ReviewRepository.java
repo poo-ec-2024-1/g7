@@ -144,6 +144,22 @@ public class ReviewRepository
     }
     
     /**
+     * Metodo que carrega a partir do id do agendamento
+     * 
+     * @return
+     */
+    public Review loadFromAgendamentoId(int id) {
+        try {
+            this.loadedReview = dao.queryForEq("agendamento_id", id).get(0);
+            if (this.loadedReview != null)
+                this.loadedReviews.add(this.loadedReview);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return this.loadedReview;
+    }
+    
+    /**
      * Metodo que carrega todas as informações
      * 
      * @return

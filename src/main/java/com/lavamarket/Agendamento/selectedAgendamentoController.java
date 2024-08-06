@@ -12,8 +12,8 @@ import java.util.ResourceBundle;
 
 import com.lavamarket.App;
 import com.lavamarket.Cliente.Cliente;
+import com.lavamarket.Cliente.ClienteController;
 import com.lavamarket.Loja.Loja;
-import com.lavamarket.Loja.LojaController;
 import com.lavamarket.Review.Review;
 
 import javafx.event.Event;
@@ -29,9 +29,9 @@ import javafx.stage.Stage;
 
 public class selectedAgendamentoController implements Initializable {
     @FXML
-    private Label nomeCliente;
+    private Label nomeLavajato;
     @FXML
-    private Label cpfCliente;
+    private Label enderecoLavajato;
 
     @FXML
     private Label apelidoVeiculo;
@@ -55,6 +55,9 @@ public class selectedAgendamentoController implements Initializable {
     @FXML
     private Slider slider;
 
+    @FXML
+    private Label erro;
+
     private Cliente cliente;
     private Loja loja;
     private Agendamento agendamento;
@@ -68,8 +71,8 @@ public class selectedAgendamentoController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        nomeCliente.setText(App.lojaRepository.loadFromId(agendamento.getIdLoja()).getNome());
-        cpfCliente.setText(App.lojaRepository.loadFromId(agendamento.getIdLoja()).getEndereco());
+        nomeLavajato.setText(App.lojaRepository.loadFromId(agendamento.getIdLoja()).getNome());
+        enderecoLavajato.setText(App.lojaRepository.loadFromId(agendamento.getIdLoja()).getEndereco());
 
         apelidoVeiculo.setText(App.veiculoRepository.loadFromId(agendamento.getIdVeiculo()).getApelido());
         placaVeiculo.setText(App.veiculoRepository.loadFromId(agendamento.getIdVeiculo()).getPlaca());
@@ -95,7 +98,6 @@ public class selectedAgendamentoController implements Initializable {
         if (App.servicoRepository.loadFromId(agendamento.getIdServicos()).isOutros()){
             servicos += "Outros";
         }
-        servicos.replace(" ", ", ");
         servicosSelecionados.setText(servicos);
 
         valorServicos.setText("R$ " + agendamento.getValor());
@@ -107,8 +109,8 @@ public class selectedAgendamentoController implements Initializable {
     @FXML
     public void voltar(Event event) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("lojas.fxml"));
-            LojaController controller = new LojaController(loja);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Cliente/clientes.fxml"));
+            ClienteController controller = new ClienteController(cliente);
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -124,8 +126,8 @@ public class selectedAgendamentoController implements Initializable {
     public void finalizarAgendamento(Event event) {
         try{
             App.agendamentoRepository.delete(agendamento);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("lojas.fxml"));
-            LojaController controller = new LojaController(loja);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Cliente/clientes.fxml"));
+            ClienteController controller = new ClienteController(cliente);
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -140,17 +142,29 @@ public class selectedAgendamentoController implements Initializable {
     @FXML
     public void review(Event event) {
         try{
-            Review review = new Review(agendamento.getIdLoja(), (int) slider.getValue());
-            App.reviewRepository.create(review);
+            if (validaReview()){
+                Review review = new Review(agendamento.getIdLoja(), agendamento.getIdCliente(), agendamento.getId(), (int) slider.getValue());
+                App.reviewRepository.create(review);
+            }
         } catch (Exception e){
             System.out.println("ERRO AO AVALIAR: " + e);
         }
     }
 
-    // Precisa consertar!!
+    /*
+     * Metodo que valida se o cliente ja fez uma avaliação
+     * 
+     */
     public Boolean validaReview(){
-        if (App.reviewRepository.loadFromId(agendamento.getIdLoja()) == null){
-            return true;
+        try {
+            App.reviewRepository.loadFromAgendamentoId(agendamento.getId());
+            erro.setText("Você ja fez uma avaliação");
+            erro.setTextFill(javafx.scene.paint.Color.RED);
+            erro.setVisible(true);
+            return false;
+        } catch (Exception e){
+            erro.setVisible(false);
         }
+        return true;
     }
 }

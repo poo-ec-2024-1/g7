@@ -19,16 +19,16 @@
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Agenda">
+          <Tab onSelectionChanged="#loadAgendamentos" text="Agenda">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="184.0" layoutY="61.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tabelaAgendamentos" layoutX="184.0" layoutY="61.0" onMouseClicked="#loadSelectedAgendamento" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Nome do cliente" />
-                            <TableColumn prefWidth="75.0" text="Tipo do veiculo" />
-                              <TableColumn prefWidth="75.0" text="Placa do veiculo" />
-                              <TableColumn prefWidth="75.0" text="Data da lavagem" />
+                            <TableColumn fx:id="nomeCliente" prefWidth="75.0" text="Nome do cliente" />
+                            <TableColumn fx:id="tipoVeiculo" prefWidth="75.0" text="Tipo do veiculo" />
+                              <TableColumn fx:id="placaVeiculo" prefWidth="75.0" text="Placa do veiculo" />
+                              <TableColumn fx:id="dataAgendamento" prefWidth="75.0" text="Data da lavagem" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

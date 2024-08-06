@@ -73,14 +73,15 @@ public class selectedAgendamentoLojaController implements Initializable {
         this.agendamento = agendamento;
     }
 
-    @Override
     /**
      * Metodo de inicialização do repositorio de agendamentos
      * 
      * @param location
      * @param resources
      */
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try{
         nomeCliente.setText(App.lojaRepository.loadFromId(agendamento.getIdLoja()).getNome());
         cpfCliente.setText(App.lojaRepository.loadFromId(agendamento.getIdLoja()).getEndereco());
 
@@ -108,13 +109,16 @@ public class selectedAgendamentoLojaController implements Initializable {
         if (App.servicoRepository.loadFromId(agendamento.getIdServicos()).isOutros()){
             servicos += "Outros";
         }
-        servicos.replace(" ", ", ");
+
         servicosSelecionados.setText(servicos);
 
         valorServicos.setText("R$ " + agendamento.getValor());
 
         SimpleDateFormat d = new SimpleDateFormat("dd/MM/yyyy");
-        dataAgendamento.setText(d.format(agendamento.getData()));
+        dataAgendamento.setText((String)d.format(agendamento.getData()));
+    } catch (Exception e){
+        System.out.println("ERRO AO INICIALIZAR: " + e);
+    }   
     }
 
     /**

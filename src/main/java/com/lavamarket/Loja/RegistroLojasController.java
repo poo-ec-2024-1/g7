@@ -7,13 +7,17 @@
 package com.lavamarket.Loja;
 
 import com.lavamarket.App;
-import com.lavamarket.Util;
+import com.lavamarket.Login.LoginLojaController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class RegistroLojasController
@@ -29,8 +33,6 @@ public class RegistroLojasController
     @FXML
     TextField endereco;
     @FXML
-    Button registerButton;
-    @FXML
     Label erro;
 
 
@@ -40,14 +42,20 @@ public class RegistroLojasController
      * @param event
      */
     @FXML
-    private void registerLojaButton(ActionEvent event) {
+    private void registerButton(ActionEvent event) {
         try{    
-            if (usuario.getText().isEmpty() || senha.getText().isEmpty() || nome.getText().isEmpty() || cnpj.getText().isEmpty() || endereco.getText().isEmpty()) {
-                erro.setVisible(true);
-            } else {
+            if (validaRegistro()) { 
                 Loja loja = new Loja(nome.getText(), usuario.getText(), senha.getText(), cnpj.getText(), endereco.getText());
                 App.lojaRepository.create(loja);
-                Util.mudarScene("login.fxml", event, getClass());
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Login/login - Loja.fxml"));
+                LoginLojaController controller = new LoginLojaController();
+                loader.setController(controller);
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -62,9 +70,61 @@ public class RegistroLojasController
     @FXML
     private void voltarButton(ActionEvent event) {
         try{
-            Util.mudarScene("login.fxml", event, getClass());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Login/login - Loja.fxml"));
+            LoginLojaController controller = new LoginLojaController();
+            loader.setController(controller);
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    /**
+     * Metodo que valida o registro de lojas
+     * 
+     * @return Boolean
+     */
+    private Boolean validaRegistro(){
+        try{
+            App.lojaRepository.loadFromUsuario(usuario.getText());
+            erro.setText("Usuario ja cadastrado");
+            erro.setVisible(true);
+            return false;
+        } catch (Exception e) {
+            erro.setVisible(false);
+        }
+        if (usuario.getText().isEmpty() || senha.getText().isEmpty() || nome.getText().isEmpty() || cnpj.getText().isEmpty() || endereco.getText().isEmpty()) {
+            erro.setText("Preencha todos os campos");
+            erro.setVisible(true);
+            return false;
+        } else{ 
+            erro.setVisible(false);
+        }
+        if (cnpj.getText().length() != 14) {
+            erro.setText("CNPJ invalido");
+            erro.setVisible(true);
+            return false;
+        } else{
+            erro.setVisible(false);
+        }
+        if (usuario.getText().length() < 6) {
+            erro.setText("Usuario deve ter no minimo 6 caracteres");
+            erro.setVisible(true);
+            return false;
+        } else{
+            erro.setVisible(false);
+        }
+        if (senha.getText().length() < 6) {
+            erro.setText("Senha deve ter no minimo 6 caracteres");
+            erro.setVisible(true);
+            return false;
+        } else{
+            erro.setVisible(false);
+        }
+        return true;
     }
 }

@@ -17,6 +17,10 @@ public class Review {
     private int lavajato_id;
     @DatabaseField
     private int review = 0;
+    @DatabaseField
+    private int cliente_id;
+    @DatabaseField
+    private int agendamento_id;
 
     /**
      * Metodor construtor da classe review
@@ -24,9 +28,11 @@ public class Review {
      * @param lavajato_id
      * @param review
      */
-    public Review(int lavajato_id, int review) {
+    public Review(int lavajato_id, int cliente_id, int agendamento_id, int review) {
         this.lavajato_id = lavajato_id;
         this.review = review;
+        this.cliente_id = cliente_id;
+        this.agendamento_id = agendamento_id;
     }
 
     /**
@@ -80,5 +86,50 @@ public class Review {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * Metodo que altera o id da avaliação
+     * 
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Metodo que retorna o id do cliente
+     * 
+     * @return
+     */
+    public int getCliente_id() {
+        return cliente_id;
+    }
+
+    /**
+     * Metodo que altera o id do cliente
+     * 
+     * @param cliente_id
+     */
+    public void setCliente_id(int cliente_id) {
+        this.cliente_id = cliente_id;
+    }
+
+    /**
+     * Metodo que retorna o id do agendamento
+     * 
+     * @return
+     */
+    public int getAgendamento_id() {
+        return agendamento_id;
+    }
+
+    /**
+     * Metodo que altera o id do agendamento
+     * 
+     * @param agendamento_id
+     */
+    public void setAgendamento_id(int agendamento_id) {
+        this.agendamento_id = agendamento_id;
     }
 }

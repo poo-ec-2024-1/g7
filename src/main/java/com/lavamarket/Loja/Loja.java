@@ -44,7 +44,7 @@ public class Loja {
     private String endereco;
 
     @DatabaseField
-    private int review = 0;
+    private int review;
 
     /**
      * Metodo construtor da loja 
@@ -240,14 +240,13 @@ public class Loja {
      * @return
      */
     public float getReview() {
-        App.reviewRepository.loadAllFromLojaId(this.id);
         int contagem = 0;
-        for (Review r : App.reviewRepository.loadAll()) {
+        for (Review r : App.reviewRepository.loadAllFromLojaId(this.id)) {
             review += r.getReview();
             contagem++;
         }
         if (contagem == 0) {
-            return review;
+            return this.review;
         }
         return this.review/contagem;
     }

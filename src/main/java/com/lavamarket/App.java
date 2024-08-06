@@ -6,7 +6,7 @@
  */
 package com.lavamarket;
 
-
+import com.lavamarket.Login.LoginController;
 import com.lavamarket.Agendamento.AgendamentoRepository;
 import com.lavamarket.Cliente.ClienteRepository;
 import com.lavamarket.Funcionario.FuncionarioRepository;
@@ -30,11 +30,17 @@ public class App extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Login/login - tela inicial.fxml"));
+        LoginController controller = new LoginController();
+        loader.setController(controller);
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+        } catch (Exception e){
+            System.out.println("Erro ao carregar tela de login" + e);
+        }
     }
     
     // Inicializadores dos bancos de dados a serem ultilizados pelo programa

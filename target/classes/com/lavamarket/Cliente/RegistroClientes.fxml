@@ -4,30 +4,48 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lavamarket.registroClientesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="nome" layoutX="50.0" layoutY="102.0" prefHeight="43.0" prefWidth="268.0" promptText="Nome" AnchorPane.bottomAnchor="255.6" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="282.0" AnchorPane.topAnchor="102.0" />
-      <TextField fx:id="senha" layoutX="360.0" layoutY="186.0" prefHeight="45.0" prefWidth="190.0" promptText="Senha" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="50.39999999999998" AnchorPane.topAnchor="186.0" />
-      <TextField fx:id="usuario" layoutX="50.0" layoutY="186.0" prefHeight="44.0" prefWidth="268.0" promptText="Usuario" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="282.0" AnchorPane.topAnchor="186.0" />
-      <TextField fx:id="cpf" layoutX="361.0" layoutY="102.0" prefHeight="45.0" prefWidth="190.0" promptText="CPF" AnchorPane.bottomAnchor="255.59999999999997" AnchorPane.leftAnchor="361.0" AnchorPane.rightAnchor="50.200000000000045" AnchorPane.topAnchor="102.0" />
-      <TextField fx:id="endereco" layoutX="50.0" layoutY="267.0" prefHeight="44.0" prefWidth="268.0" promptText="Endereço" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="282.0" AnchorPane.topAnchor="267.0" />
-      <Button fx:id="registerButton" layoutX="260.0" layoutY="330.0" mnemonicParsing="false" onAction="#registerClienteButton" text="Registrar" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="330.0" />
-      <TextField fx:id="telefone" layoutX="360.0" layoutY="267.0" prefHeight="45.0" prefWidth="190.0" promptText="Telefone" AnchorPane.bottomAnchor="89.80000000000001" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="50.39999999999998" AnchorPane.topAnchor="267.0" />
-      <Label fx:id="erro" layoutX="48.0" layoutY="316.0" prefHeight="30.0" prefWidth="210.0" text="Todos os valores devem ser devidamente inseridos" textFill="RED" visible="false" wrapText="true" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="342.0" AnchorPane.topAnchor="316.0" />
-      <Label fx:id="concluido" layoutX="350.4" layoutY="336.8" prefHeight="26.0" prefWidth="210.0" text="Registro concluido!" textFill="#0aff00" visible="false" wrapText="true" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="337.0" />
-      <Button mnemonicParsing="false" onAction="#voltarButton" text="&lt;" AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="10.0" />
-      <Label layoutX="220.0" layoutY="23.0" text="Cadastro de usuário" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="54.0" layoutY="73.0" text="Nome" />
-      <Label layoutX="369.0" layoutY="73.0" text="CPF" />
-      <Label layoutX="54.0" layoutY="161.0" text="Usuário" />
-      <Label layoutX="363.0" layoutY="161.0" text="Senha" />
-      <Label layoutX="54.0" layoutY="245.0" text="Endereço" />
-      <Label layoutX="363.0" layoutY="245.0" text="Telefone" />
+      <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="nome" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Nome" GridPane.rowIndex="1" />
+            <Label text="Nome" GridPane.rowIndex="1" GridPane.valignment="BASELINE" />
+            <TextField fx:id="usuario" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Usuario" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Usuário" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BASELINE" />
+            <TextField fx:id="cpf" maxHeight="-Infinity" maxWidth="-Infinity" promptText="CPF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="CPF" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BASELINE" />
+            <TextField fx:id="senha" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Senha" GridPane.rowIndex="2" />
+            <Label text="Senha" GridPane.rowIndex="2" GridPane.valignment="BASELINE" />
+            <TextField fx:id="telefone" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Telefone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Telefone" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BASELINE" />
+            <Button mnemonicParsing="false" onAction="#registerClienteButton" text="Registrar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#voltarButton" text="&lt;" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
+            <TextField fx:id="endereco" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Endereço" GridPane.rowIndex="3" />
+            <Label text="Endereço" GridPane.rowIndex="3" GridPane.valignment="BASELINE" />
+            <Label text="Cadastro de usuário" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="concluido" prefHeight="26.0" prefWidth="210.0" text="Registro concluido!" textFill="#0aff00" visible="false" wrapText="true" GridPane.rowIndex="4" />
+            <Label fx:id="erro" prefHeight="30.0" prefWidth="210.0" text="Todos os valores devem ser devidamente inseridos" textFill="RED" visible="false" wrapText="true" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

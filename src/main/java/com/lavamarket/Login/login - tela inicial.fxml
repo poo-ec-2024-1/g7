@@ -9,9 +9,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lavamarket.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0">
+      <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.4000244140625" minWidth="10.0" prefWidth="63.19996337890625" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="216.60000610351562" minWidth="10.0" prefWidth="180.80003662109374" />
@@ -33,9 +33,9 @@
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5de3e349" height="278.0" stroke="BLACK" strokeType="INSIDE" width="245.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button contentDisplay="BOTTOM" mnemonicParsing="false" text="ENTRAR" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#loginLojasButton" text="ENTRAR" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5ae1e552" height="278.0" stroke="BLACK" strokeType="INSIDE" width="245.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" text="ENTRAR" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#loginClientesButton" text="ENTRAR" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Label alignment="TOP_LEFT" prefHeight="143.0" prefWidth="200.0" text="Agende seu lava-jato em segundos! A Aquapro oferece serviços rápidos, seguros e de alta qualidade para deixar seu carro impecável." textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font name="Bodoni MT" size="18.0" />
