@@ -19,8 +19,8 @@ import com.lavamarket.App;
 import com.lavamarket.Agendamento.Agendamento;
 import com.lavamarket.Cliente.Cliente;
 import com.lavamarket.Cliente.ClienteController;
-import com.lavamarket.Serviço.Servico;
-import com.lavamarket.Serviço.ServicoModel;
+import com.lavamarket.Servico.Servico;
+import com.lavamarket.Servico.ServicoModel;
 import com.lavamarket.Veiculo.Veiculo;
 
 import javafx.collections.FXCollections;

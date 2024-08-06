@@ -18,8 +18,8 @@ import com.lavamarket.Agendamento.AgendamentoModel;
 import com.lavamarket.Cliente.Cliente;
 import com.lavamarket.Funcionario.Funcionario;
 import com.lavamarket.Funcionario.FuncionarioModel;
-import com.lavamarket.Serviço.Servico;
-import com.lavamarket.Serviço.ServicoModel;
+import com.lavamarket.Servico.Servico;
+import com.lavamarket.Servico.ServicoModel;
 import com.lavamarket.Veiculo.Veiculo;
 
 import javafx.collections.FXCollections;

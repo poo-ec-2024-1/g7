@@ -12,7 +12,7 @@ import com.lavamarket.Cliente.ClienteRepository;
 import com.lavamarket.Funcionario.FuncionarioRepository;
 import com.lavamarket.Loja.LojaRepository;
 import com.lavamarket.Review.ReviewRepository;
-import com.lavamarket.Serviço.ServicoRepository;
+import com.lavamarket.Servico.ServicoRepository;
 import com.lavamarket.Veiculo.VeiculoRepository;
 
 import javafx.application.Application;

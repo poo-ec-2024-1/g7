@@ -10,7 +10,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.lavamarket.App;
 import com.lavamarket.Review.Review;
-import com.lavamarket.Serviço.Servico;
+import com.lavamarket.Servico.Servico;
 
 
 @DatabaseTable(tableName = "loja")
