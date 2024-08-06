@@ -22,11 +22,10 @@
   Maria Luiza Cardoso  
   Raingredi Mendes
   
-<<<<<<< HEAD
 ## Geração de javadoc
 Executar o javadoc.bat dentro de .\target\site\apidocs\
 Foi gerado pelo maven!
-=======
+
 ## compilar e gerar o executavel
 Rodar no terminal do vs code
 > mvn package
@@ -34,7 +33,6 @@ Rodar no terminal do vs code
 ## Como gerar o javadoc
 Rodar o seguinte script
 > target\site\apidocs\javadoc.bat
->>>>>>> maryxlu-patch3
 
 ## UML do projeto
 ![image](./imgs/uml.png)
