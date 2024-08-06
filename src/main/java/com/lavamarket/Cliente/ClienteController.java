@@ -6,14 +6,17 @@
  */
 package com.lavamarket.Cliente;
 
+import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.lavamarket.App;
 import com.lavamarket.Agendamento.Agendamento;
 import com.lavamarket.Agendamento.AgendamentoModel;
 import com.lavamarket.Agendamento.SelectedAgendamentoController;
+import com.lavamarket.Login.LoginController;
 import com.lavamarket.Loja.Loja;
 import com.lavamarket.Loja.LojaModel;
 import com.lavamarket.Loja.SelectedLojaController;
@@ -26,6 +29,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -37,7 +41,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ClienteController {
+public class ClienteController implements Initializable {
     @FXML
     private TableView<VeiculoModel> tabelaVeiculos;
     @FXML
@@ -151,9 +155,6 @@ public class ClienteController {
         modelo.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("modelo"));
         cor.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("cor"));
         tipo.setCellValueFactory(new PropertyValueFactory<VeiculoModel, String>("tipo"));
-        tipoField.getItems().add("Carro");
-        tipoField.getItems().add("Moto");
-        tipoField.getItems().add("Caminhão");
         loadVeiculos();
     }
 
@@ -363,6 +364,8 @@ public class ClienteController {
     private void logout(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lavamarket/Login/login - tela inicial.fxml"));
+            LoginController controller = new LoginController();
+            loader.setController(controller);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -562,5 +565,12 @@ public class ClienteController {
             }
         }
         return true;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        tipoField.getItems().add("Carro");
+        tipoField.getItems().add("Moto");
+        tipoField.getItems().add("Caminhão");
     }
 }
