@@ -22,7 +22,13 @@
   Maria Luiza Cardoso  
   Raingredi Mendes
   
-## Modelagem inicial
+## compilar e gerar o executavel
+Rodar no terminal do vs code
+> mvn package
+
+## Como gerar o javadoc
+Rodar o seguinte script
+> target\site\apidocs\javadoc.bat
 
 ## UML do projeto
 ![image](./imgs/uml.png)
