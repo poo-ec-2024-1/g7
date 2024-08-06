@@ -4,11 +4,12 @@
  * @author Maryxlu, Erick_Fleury, Raingredi
  * @version 0.0.1
  */
-package com.lavamarket.Main;
+package com.lavamarket;
 
 import com.lavamarket.Login.LoginController;
 import com.lavamarket.Agendamento.AgendamentoRepository;
 import com.lavamarket.Cliente.ClienteRepository;
+import com.lavamarket.Database.Database;
 import com.lavamarket.Funcionario.FuncionarioRepository;
 import com.lavamarket.Loja.LojaRepository;
 import com.lavamarket.Review.ReviewRepository;

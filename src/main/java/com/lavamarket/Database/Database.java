@@ -4,7 +4,7 @@
  * @author Maryxlu, Erick_Fleury, Raingredi
  * @version 0.0.1
  */
-package com.lavamarket.Main;
+package com.lavamarket.Database;
 
 import java.sql.*;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;

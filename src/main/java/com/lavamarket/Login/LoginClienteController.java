@@ -1,6 +1,6 @@
 package com.lavamarket.Login;
 
-import com.lavamarket.Main.App;
+import com.lavamarket.App;
 import com.lavamarket.Cliente.Cliente;
 import com.lavamarket.Cliente.ClienteController;
 import com.lavamarket.Cliente.RegistroClientesController;

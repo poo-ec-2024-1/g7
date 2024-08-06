@@ -80,8 +80,7 @@
         <archive>
           <manifest>
             <addClasspath>true</addClasspath>
-            <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>com.lavamarket.App</mainClass>
+            <mainClass>com.lavamarket</mainClass>
           </manifest>
         </archive>
       </configuration>

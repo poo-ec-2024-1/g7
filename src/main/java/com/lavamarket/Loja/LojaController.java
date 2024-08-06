@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.lavamarket.Main.App;
+import com.lavamarket.App;
 import com.lavamarket.Agendamento.Agendamento;
 import com.lavamarket.Agendamento.AgendamentoModel;
 import com.lavamarket.Cliente.Cliente;

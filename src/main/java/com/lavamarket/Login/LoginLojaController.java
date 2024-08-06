@@ -1,6 +1,6 @@
 package com.lavamarket.Login;
 
-import com.lavamarket.Main.App;
+import com.lavamarket.App;
 import com.lavamarket.Loja.Loja;
 import com.lavamarket.Loja.LojaController;
 import com.lavamarket.Loja.RegistroLojasController;

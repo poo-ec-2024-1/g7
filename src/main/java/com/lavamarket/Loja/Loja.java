@@ -8,7 +8,7 @@ package com.lavamarket.Loja;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import com.lavamarket.Main.App;
+import com.lavamarket.App;
 import com.lavamarket.Review.Review;
 import com.lavamarket.Servico.Servico;
 
