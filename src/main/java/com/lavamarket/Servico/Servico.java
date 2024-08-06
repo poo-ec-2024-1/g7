@@ -7,7 +7,9 @@
 package com.lavamarket.Servico;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
+@DatabaseTable(tableName = "servico")
 public class Servico {
     @DatabaseField(generatedId = true)
     private int id;

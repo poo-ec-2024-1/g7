@@ -8,7 +8,6 @@ package com.lavamarket.Cliente;
 
 import com.lavamarket.App;
 import com.lavamarket.Login.LoginClienteController;
-import com.lavamarket.Login.LoginController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

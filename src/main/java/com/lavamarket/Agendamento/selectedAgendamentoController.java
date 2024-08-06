@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 import com.lavamarket.App;
 import com.lavamarket.Cliente.Cliente;
 import com.lavamarket.Cliente.ClienteController;
-import com.lavamarket.Loja.Loja;
 import com.lavamarket.Review.Review;
 
 import javafx.event.Event;
@@ -59,14 +58,12 @@ public class SelectedAgendamentoController implements Initializable {
     private Label erro;
 
     private Cliente cliente;
-    private Loja loja;
     private Agendamento agendamento;
 
     String servicos = "";
 
-    public SelectedAgendamentoController(Cliente cliente, Loja loja, Agendamento agendamento){
+    public SelectedAgendamentoController(Cliente cliente, Agendamento agendamento){
         this.cliente = cliente;
-        this.loja = loja;
         this.agendamento = agendamento;
     }
     @Override

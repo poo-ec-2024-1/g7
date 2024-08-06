@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 
 import com.lavamarket.App;
 import com.lavamarket.Agendamento.Agendamento;
-import com.lavamarket.Cliente.Cliente;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -54,7 +53,6 @@ public class SelectedAgendamentoLojaController implements Initializable {
     @FXML
     private Slider slider;
 
-    private Cliente cliente;
     private Loja loja;
     private Agendamento agendamento;
 
@@ -63,12 +61,10 @@ public class SelectedAgendamentoLojaController implements Initializable {
     /**
      * Metodo construtor da classe
      * 
-     * @param cliente
      * @param loja
      * @param agendamento
      */
-    public SelectedAgendamentoLojaController(Cliente cliente, Loja loja, Agendamento agendamento){
-        this.cliente = cliente;
+    public SelectedAgendamentoLojaController(Loja loja, Agendamento agendamento){
         this.loja = loja;
         this.agendamento = agendamento;
     }
