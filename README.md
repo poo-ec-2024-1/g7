@@ -35,6 +35,7 @@ Rodar o seguinte script
 > target\site\apidocs\javadoc.bat
 
 ## UML do projeto
+Tá bem cru, mas não to com animo de documentar mais - Maryxlu
 ![image](https://github.com/user-attachments/assets/6b987add-874c-44a5-9412-636a9c27bd20)
 
 
