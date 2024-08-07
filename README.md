@@ -42,3 +42,8 @@ Rodar o seguinte script
 ### Boas práticas
 toda vez que modificar algo no pom.xml favor executar no VScode:
 > Java: Clean Java Language Server Workspace
+
+# Video de apresentação
+
+[![Apresentação no YouTube]([https://www.youtube.com/watch?v=video-id)](https://www.youtube.com/live/cXxCnQEF-zY)
+
